@@ -10,9 +10,15 @@ Das Script hat das Ziel, Sie optimal durch die Vorlesung zu begleiten. Es ersetz
 
 #definition("Begriff", "Ein ausführliche Definition für den Begriff.")
 
-#complementary("Zusatzwissen", "Zusätzliches Wissen zu einem Konzept, welches über dieses Modul hinaus geht. Die Konzepte werden eventuell in späteren Modulen erneut aufgegriffen.")
+#complementary(
+  "Zusatzwissen",
+  "Zusätzliches Wissen zu einem Konzept, welches über dieses Modul hinaus geht. Die Konzepte werden eventuell in späteren Modulen erneut aufgegriffen.",
+)
 
-#example("Beispiel", "Ein Beispiel, welches auf bestimmte Grenzfälle oder häufige Fehler eingeht.")
+#example(
+  "Beispiel",
+  "Ein Beispiel, welches auf bestimmte Grenzfälle oder häufige Fehler eingeht.",
+)
 
 == Source Code
 

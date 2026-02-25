@@ -1,5 +1,9 @@
 #align(center + horizon, [
-  #text(26pt, "Einführung in die objekt-orientierte Modellierung und Programmierung", weight: "extrabold")
+  #text(
+    26pt,
+    "Einführung in die objekt-orientierte Modellierung und Programmierung",
+    weight: "extrabold",
+  )
 ])
 
 #show link: underline
@@ -32,7 +36,7 @@
   "interfaces.typ",
   "exceptions.typ",
   "multi-threading.typ",
-  "software-engineering.typ"
+  "software-engineering.typ",
 ) {
   include file
   pagebreak()

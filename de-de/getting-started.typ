@@ -6,7 +6,7 @@ Bevor Sie anfangen, sollten Sie zunächst Java sowie einen Editor oder eine IDE 
 
 == Hello World
 
-Erstellen Sie ein neues Verzeichnis ihrer Wahl und darin eine neue Datei namens `Main.java`. 
+Erstellen Sie ein neues Verzeichnis ihrer Wahl und darin eine neue Datei namens `Main.java`.
 
 Schreiben Sie den folgenden Inhalt in die Datei:
 

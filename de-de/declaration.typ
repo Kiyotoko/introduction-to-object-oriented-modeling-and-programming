@@ -2,11 +2,17 @@
 
 = Deklaration
 
-#definition("Deklaration", "Eine Deklaration (engl.: „declaration“) vereinbart die Rolle eines Bezeichners innerhalb eines Programms.")
+#definition(
+  "Deklaration",
+  "Eine Deklaration (engl.: „declaration“) vereinbart die Rolle eines Bezeichners innerhalb eines Programms.",
+)
 
 Um eine Variable zu erstellen, muss diese zuerst deklariert werden. Das Deklarieren eines Datentypes spezifiziert die Daten und den Datentyp eines Datentypes.
 
-#definition("Datentyp", "Ein Datentyp (engl.: „data type“) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich")
+#definition(
+  "Datentyp",
+  "Ein Datentyp (engl.: „data type“) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich",
+)
 
 Es wird immer zuerst der Datentyp festgelegt und dann der Name der Variable. Danach kann der Variable direkt ein Wert zugewiesen werden.
 Deklarieren von Datentypen:

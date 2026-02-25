@@ -50,7 +50,10 @@ int a;
 
 == If/Else
 
-#definition("Kontrollstruktur", "Kontrollstrukturen (engl.: „control structures“) sind Syntaxkonstrukte, die dazu dienen, Anweisungen zu strukturieren und deren Ausführungsreihenfolge und -häufigkeiten festzulegen.")
+#definition(
+  "Kontrollstruktur",
+  "Kontrollstrukturen (engl.: „control structures“) sind Syntaxkonstrukte, die dazu dienen, Anweisungen zu strukturieren und deren Ausführungsreihenfolge und -häufigkeiten festzulegen.",
+)
 
 Bedingte Ausführung kann durch If/Else erreicht werden.
 

@@ -9,7 +9,7 @@
 #definition("Auswertung", [
   Die Auswertung (engl.: „evaluation“) eines Ausdrucks ist die Bestimmung des Wertes dieses Ausdrucks.
   Es gibt folgende Arten von Ausdrücken:
-  
+
   - Literale
   - Variablen
   - Operationen
@@ -33,9 +33,7 @@ Sowohl Integers als auch Floats gibt es in verschiedenen Größen. Alle Zahlen i
 
 #table(
   columns: (auto, auto, auto, auto),
-  table.header(
-    [*Typ*], [*Größe*], [*Fließkommazahl*], [*Beispiel*]
-  ),
+  table.header([*Typ*], [*Größe*], [*Fließkommazahl*], [*Beispiel*]),
   `byte`, [8 Bit], [Nein], `(byte) 42`,
   `short`, [16 Bit], [Nein], `(short) 42`,
   `int`, [32 Bit], [Nein], `42`,
@@ -46,7 +44,10 @@ Sowohl Integers als auch Floats gibt es in verschiedenen Größen. Alle Zahlen i
 
 Booleans sind Wahrheitswerte, welche entweder den Wert Wahr (`true`) oder Falsch (`false`) haben. Dabei sind `true` und `false` Schlüsselwörter.
 
-#definition("Schlüsselwort", "Schlüsselwörter (engl. „keywords“ oder „reserved words“) bestehen wie Bezeichner aus Buchstaben-Zahlen-Kombinationen, haben aber eine feste Bedeutung innerhalb der Programmiersprache, stehen daher nicht als Bezeichner zur Verfügung.")
+#definition(
+  "Schlüsselwort",
+  "Schlüsselwörter (engl. „keywords“ oder „reserved words“) bestehen wie Bezeichner aus Buchstaben-Zahlen-Kombinationen, haben aber eine feste Bedeutung innerhalb der Programmiersprache, stehen daher nicht als Bezeichner zur Verfügung.",
+)
 
 Chars sind einzelne Zeichen wie Buchstaben, Nummern oder Satzzeichen. Ein String ist eine Zeichenkette.
 
@@ -59,7 +60,10 @@ Chars sind einzelne Zeichen wie Buchstaben, Nummern oder Satzzeichen. Ein String
 
 Variablen sind Bezeichner.
 
-#definition("Bezeichner", [Bezeichner (engl.: „identifier“) sind zumeist Buchstaben-Zahlenkombinationen, die als Namen für z.B. Werte dienen. Bezeichner sind in Java eine nichtleere Folge der Zeichen `[a-zA-Z0-9_]`. Sie dürfen nicht mit einer Ziffer beginnen und kein Schlüsselwort sein.])
+#definition(
+  "Bezeichner",
+  [Bezeichner (engl.: „identifier“) sind zumeist Buchstaben-Zahlenkombinationen, die als Namen für z.B. Werte dienen. Bezeichner sind in Java eine nichtleere Folge der Zeichen `[a-zA-Z0-9_]`. Sie dürfen nicht mit einer Ziffer beginnen und kein Schlüsselwort sein.],
+)
 
 == Unäre Operationen
 

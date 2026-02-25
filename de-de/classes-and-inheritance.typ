@@ -9,7 +9,7 @@ class YourClass extends BaseClass {
   @Override
   void baseMethod() { ... }
 
-  void yourMethod() { ... } 
+  void yourMethod() { ... }
 }
 ```
 
@@ -29,7 +29,7 @@ abstract class YourClass {
 
 Eine verschachtelte Klasse (engl.: „nested class“) ist eine Klasse, welche in einer anderen Klasse verschachtelt ist. Eine solche Klasse kann auf alle private Attribute und Methode der äußeren Klasse (engl.: „outer class“) zugreifen.
 
-Es gibt statische und nicht-statische verschachtelte Klassen. Statische Klasse sind unabhängig von den Instanzen der äußeren Klasse und können wie andere Klassen direkt über `new` erstellt werden. Nicht-statische Klassen sind 
+Es gibt statische und nicht-statische verschachtelte Klassen. Statische Klasse sind unabhängig von den Instanzen der äußeren Klasse und können wie andere Klassen direkt über `new` erstellt werden. Nicht-statische Klassen sind
 
 ```java
 class Outer {
