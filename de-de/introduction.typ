@@ -6,7 +6,7 @@ In diesem Modul werden Sie object-orientierte Programmierung in Java sowie Model
 
 == Hinweise zum Script
 
-Das Script hat das Ziel, Sie optimal durch die Vorlesung zu begleiten. Es ersetzt nicht die Vorlesung. In dem Script werden Konzepte aufeinander aufbauend erklärt.
+Dieses Skript ist als Hilfestellung für Studierende gedacht. Trotz großer Sorgfalt beim Erstellen kann keine Garantie für Fehlerfreiheit übernommen werden. Es wird ausdrücklich darauf hingewiesen, dass der prüfungsrelevante Stoff durch die Vorlesung bestimmt wird und mit dem Skriptinhalt nicht vollständig übereinstimmen muss.
 
 #definition("Begriff", "Ein ausführliche Definition für den Begriff.")
 
@@ -52,6 +52,16 @@ In der Programmierung wird ein Programm geschrieben, welche einen Algorithmus in
 == Was ist objekt-orientierte Programmierung?
 
 Unsere Systeme bestehen aus Objekten, die im Austausch miteinander stehen. Wir modellieren diese Objekte und Beziehungen zueinander. Gleichartige Objekte fassen wir zu Klassen zusammen. @hesse2008
+
+Zentrale Frage:
+#align(center)[
+  Wie lässt sich die Welt als Menge von autonomen Objekten, die mittels Nachrichten kommunizieren, beschreiben?
+]
+
+- Programme simulieren Objektkommunikation
+- Objekte bündeln Daten mit zugehöriger Funktionalität
+- Gleich aufgebaute Objekte sind zu Klassen zusammengefasst
+- Verhalten bei Eintreffen von Nachricht: meist imperativ beschrieben
 
 == Source Code
 
