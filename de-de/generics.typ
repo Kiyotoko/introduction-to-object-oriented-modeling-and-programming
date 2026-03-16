@@ -5,44 +5,54 @@
 Generics erlauben es, Datentypen als Parameter zu übergeben. Dies ermöglicht es, Klassen, Interfaces oder Methoden für verschiedene Datentypen zu verwenden.
 
 - Generics kommen nach dem Modifikator, aber vor dem Return Type
-- Generics können mit extends und super eingeschränkt werden
+- Generics können mit ```java extends``` und ```java super``` eingeschränkt werden
 - Generics erlauben das Nutzen von Wildcards (?)
 - Es können beliebig viele Datentypen definiert werden
 
 ```java
-// Methode mit 2 Generic Types, wobe A von B abhängt
+// Methode mit 2 Generic Types, wobe A von B abhängt.
 static <B, A extends B> A upcast(B b) {
   return (A) b;
 }
 
-// Generics können Typen verwenden, bevor diese definiert wurden
+// Generics können Typen verwenden, bevor diese definiert wurden.
 static <A extends B, B> A upcast(B b) {
   return (A) b;
 }
 
-static <T> void consumeAll(Consumer<? super T> consumer, Collection<? extends T> collection) {
+// Die Typen können mit Wildcards, `super` und `extends` kombiniert werden.
+static <T> void consumeAll(Consumer<? super T> consumer,
+    Collection<? extends T> collection) {
   for (T element : collection) consumer.accept(element);
 }
 
-// Genercs können wiederum in den Generics von Interfaces und co. weiterverwendet werden
+// Generics können wiederum an die Generics von Interfaces und co. weitergegeben werden.
 static <T> T op(T left, BinaryOperator<T> op, T right) {
   return op.apply(left, right);
 }
 ```
 
+Als Datentyp können nur Klassen als Generic übergeben werden. Primitive Datentypen wie in ```java Consumer<int>``` sind somit nicht erlaubt. Stattdessen muss auf die jeweilige Wrapper-Klasse zurückgegriffen werden, hier zum Beispiel ```java Integer```.
+
+Wildcards stehen für beliebige Typen. Jede verwendete Wildcard ist vom Typen unterschiedlich zu jeder anderen Wildcard. Jede Wildcard kann zu jedem beliebigen Typen gecastet werden, und jeder Typ kann zu einer Wildcard gecastet werden. Erst während der Runtime werden die Typen überprüft und gegebenfalls ein Fehler geworfen.
+
+Die Einschränkung `extends` sorgt dafür, dass der Datentyp Links aus dem Datentyp Rechts erben muss. Die Einschränkung `super` verlangt, dass der Datentyp Links eine Unterklasse von Rechts sein muss, dass heißt der Datentyp Rechts muss aus dem Datentyp Links erben. Wann sollte man welche Einschränkung verwenden? Einschränkungen als auch Wildcards sollten fast immer nur bei Methoden verwendet werden. Bei Suppliern (Methoden, die einen Datentyp ausgeben) verwendet man `extends`, bei Consumern (Methoden, die einen Datentyp als Eingabe bekommen) `super`.
+
+Diese Methoden können wie folgt aufgerufen werden:
+
 ```java
-Object b = "abc";
-String a = cast(b);
+Object b = "World";
+String a = upcast(b);
+System.out.println(a); // Gibt "World" aus.
 
-System.out.println(a);
+consumeAll(System.out::println, List.of("a", "b", "c"));
+// Gibt "a", "b" und "c" auf jeweils einer neuen Zeile aus.
 
-consumeAll(System.out::println, List.of("a", "b", "c"))
-
-System.out.println(op("abc", (l, r) -> l + r, "def"));
+System.out.println(op("Hello", (l, r) -> l + ", " + r, "World")); // Gibt "Hello World" aus.
 ```
 
 #example("Incompatible Types")[
-  Was passiert, wenn es keine Typen gibt, welche die Einschränkungen der Generics erfüllt? Das folgende Beispiel hat die Funktion `downcast`, welche eine Instanz in einen niedrigeren Typen umwandelt.
+  Was passiert, wenn es keine Typen gibt, welche die Einschränkungen der Generics erfüllt? Das folgende Beispiel behandelt die Funktion `downcast`, welche eine Instanz in einen niedrigeren Typen umwandelt.
 
   ```java
   static <A, B extends A> A downcast(B b) {
