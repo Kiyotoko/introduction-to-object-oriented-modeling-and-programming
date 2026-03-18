@@ -1,26 +1,22 @@
-#align(center + horizon, [
-  #text(
+#import "../common/config.typ": conf
+
+#show: conf.with(lang: "de")
+
+#align(center + horizon, {
+  text(
     26pt,
     "Einführung in die objekt-orientierte Modellierung und Programmierung",
     weight: "extrabold",
   )
-])
-
-#show link: underline
-#set page(numbering: "1")
-#set heading(numbering: "1.")
-#set text(14pt, lang: "de")
-
+})
 #pagebreak()
 
-#align(bottom, [
-  #include "../common/notice.typ"
-])
-
+#align(bottom, {
+  include "../common/notice.typ"
+})
 #pagebreak()
 
 #outline(title: "Inhalt")
-
 #pagebreak()
 
 #for file in (
@@ -41,5 +37,3 @@
   include file
   pagebreak()
 }
-
-#bibliography("../common/works.bib")
