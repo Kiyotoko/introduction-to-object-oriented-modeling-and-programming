@@ -1,27 +1,45 @@
 #import "../common/callouts.typ": *
 
 = Ausdrücke
+Um gespeicherte Informationen verarbeiten zu können braucht es eine eindeutige Interpretation der gespeicherten Bits. Gleichzeitig soll beim Programmieren von der Hardwaredarstellung der Informationen abstrahiert werden. Dafür werden *Datentypen* definiert.
 
-#definition("Ausdruck", [
-  Ein Ausdruck (engl.: „expression“) ist ein Syntaxkonstrukt, das zur Beschreibung eines Wertes dient.
+#definition("Datentypen", [
+  Ein *Datentyp* (engl.: "data type") ist gekennzeichnet durch einen Wertebereich sowie Opeartionen auf diesem Wertebereich.
 ])
 
-#definition("Auswertung", [
-  Die Auswertung (engl.: „evaluation“) eines Ausdrucks ist die Bestimmung des Wertes dieses Ausdrucks.
-  Es gibt folgende Arten von Ausdrücken:
+In Java sind primitiven Datentypen für Zahlen, Wahrheitswerte, Zeichen und Zeichenketten definiert. Es gibt dabei verschiedene Varianten, je nachdem wie viel Speicher für einen Wert dieses Datentyps reserviert wird.
+Zahlen in Java sind entweder Ganzzahlen (Integers) oder Gleitkommazahlen (Floats, auch Fließkommazahl). Alle Zahlen in Java werden mit einem Vorzeichen abgespeichert (Plus/Minus).In der folgenden Tabelle sind Javas primitiven Datentypen für Zahlen angegeben:
+
+#table(
+  columns: (auto, auto, auto, auto, auto),
+  table.header([*Typ*], [*Größe*], [*Fließkommazahl*], [*Beispiel*], [*Wertebereich*]),
+  `byte`, [8 Bit], [Nein], `(byte) 42`, [$-2^7$ bis $2^7 - 1 $],
+  `short`, [16 Bit], [Nein], `(short) 42`, [$-2^15$ bis $2^15 -1$],
+  `int`, [32 Bit], [Nein], `42`,[$-2^31$ bis $2^31 - 1$],
+  `long`, [64 Bit], [Nein], `42L`, [$-263$ bis $263 - 1 $],
+  `float`, [32 Bit], [Ja], `4.2F`,[$-3.40282347 dot 10^38$ bis $3.40282347 dot 10^38$],
+  `double`, [64 Bit], [Ja], `4.2`,[$-1.79769313486231570 dot 10^308$ bis $1.79769313486231570 dot 10^308$],
+)
+Die anderen primitiven Datentypen werden später besprochen. Zuerst wollen wir Daten mit Variablen und Operatoren verbinden und so neue Werte beschreiben. Analog wie Terme in der Mathematik verwenden wir dazu Ausdrücke:
+
+#definition("Ausdruck", [
+  Ein Ausdruck (engl.: „expression“) ist ein Syntaxkonstrukt, das zur Beschreibung eines Wertes dient. Es gibt folgende Arten von Ausdrücken:
 
   - Literale
   - Variablen
   - Operationen
+
 ])
+
+#definition("Auswertung", [
+  Die Auswertung (engl.: „evaluation“) eines Ausdrucks ist die Bestimmung des Wertes dieses Ausdrucks.
+ ])
 
 == Literale
 
-Literale sind die gleinsten Elemente eines Ausdrucks. Zu den Literalen gehören: Zahlen, Booleans, Strings, Chars und Variablen.
+Ein Literal ist ein Ausdruck, der direkt einen Wert beschreibt. Zu den Literalen gehören alle Werte eines primitven Datentypes, also Zahlen, Booleans, Strings, Chars und Variablen.
 
-Zahlen in Java sind entweder Ganzzahlen (Integers) oder Gleitkommazahlen (Floats, auch Fließkommazahl).
-Sowohl Integers als auch Floats gibt es in verschiedenen Größen. Alle Zahlen in Java werden mit einem Vorzeichen abgespeichert (Plus/Minus).
-
+Beispiele für Zahlliterale sind 
 ```java
 42 // Integer
 42L // Long
@@ -30,17 +48,6 @@ Sowohl Integers als auch Floats gibt es in verschiedenen Größen. Alle Zahlen i
 +31 // Positiv, + ist implizit
 -31 // Negativ
 ```
-
-#table(
-  columns: (auto, auto, auto, auto),
-  table.header([*Typ*], [*Größe*], [*Fließkommazahl*], [*Beispiel*]),
-  `byte`, [8 Bit], [Nein], `(byte) 42`,
-  `short`, [16 Bit], [Nein], `(short) 42`,
-  `int`, [32 Bit], [Nein], `42`,
-  `long`, [64 Bit], [Nein], `42L`,
-  `float`, [32 Bit], [Ja], `4.2F`,
-  `double`, [64 Bit], [Ja], `4.2`,
-)
 
 Booleans sind Wahrheitswerte, welche entweder den Wert Wahr (`true`) oder Falsch (`false`) haben. Dabei sind `true` und `false` Schlüsselwörter.
 
@@ -58,16 +65,13 @@ Chars sind einzelne Zeichen wie Buchstaben, Nummern oder Satzzeichen. Ein String
 
 == Variable
 
-Variablen sind Bezeichner.
+Variablen sind Namen, die einen Wert beschreiben. In der Auswertung werden sie durch die konkreten Werte ersetzt. Als Variablennamen stehen in Java alle nichtleeren Folgen von Zeichen `[a-zA-Z0-9_]` zur Verfügung, die nicht mit einer Ziffer beginnen und kein Schlüsselwort sind.
 
-#definition(
-  "Bezeichner",
-  [Bezeichner (engl.: „identifier“) sind zumeist Buchstaben-Zahlenkombinationen, die als Namen für z.B. Werte dienen. Bezeichner sind in Java eine nichtleere Folge der Zeichen `[a-zA-Z0-9_]`. Sie dürfen nicht mit einer Ziffer beginnen und kein Schlüsselwort sein.],
-)
+Als nächstes wollen wir uns die wichtigsten Operationen auf primitiven Datentypen anschauen. 
 
 == Unäre Operationen
 
-Unäre Operationen sind Operationen, welche einen Ausdruck nehmen und einen neuen Wert zurückgeben. Diese sind Plus, Minus (Negation), Not sowie Bit Operationen. Bit Operationen sind Operationen, welche direkt mit den einzelnen Bits eines Wertes arbeiten wie zum Beispiel Bitwise Complement. Diese sind in anderen Modulen relevant (siehe TI), werden hier aber nicht weiter behandelt.
+Unäre Operationen sind Operationen, welche *einen* Ausdruck nehmen und einen neuen Wert zurückgeben. Diese sind Plus, Minus (Negation), Not sowie Bit Operationen. Bit Operationen sind Operationen, welche direkt mit den einzelnen Bits eines Wertes arbeiten wie zum Beispiel Bitwise Complement. Diese sind in anderen Modulen relevant (siehe TI), werden hier aber nicht weiter behandelt.
 
 ```java
 +42
@@ -77,7 +81,7 @@ Unäre Operationen sind Operationen, welche einen Ausdruck nehmen und einen neue
 
 == Binäre Operationen
 
-Binäre Operationen sind Operationen, welche zwei Ausdrücke nehmen und einen neuen Wert zurückgeben. Diese sind Addition, Substraktion, Multiplikation, Division, Modular, Und, Oder, Gleich, Zuweisung, sowie Bit Operationen.
+Binäre Operationen sind Operationen, welche *zwei* Ausdrücke nehmen und einen neuen Wert zurückgeben. Diese sind Addition, Substraktion, Multiplikation, Division, Modular, Und, Oder, Gleich, Zuweisung, sowie Bit Operationen.
 
 Häufige Operationen auf Zahlen sind:
 
@@ -117,7 +121,7 @@ true || (/* Hier würde ein Fehler entstehen */)
 
 == Ternäre Operationen
 
-Short Hand If Else (Meinstens nur Ternary Operator) ist der einzige Ternäre Operator in Java. Ein ternäre Operator bestimmt einen neuen Wert anhand von drei Ausdrücken. Die Zeichen `?` und `:` gehören beide zum selben Operator. Sie können die Zeichen nicht alle verwenden. Der Operator evaluiert die Bedingung. Falls die Bedingung Wahr ist, wird der erste Ausdruck zurück gegeben, ansonsten der zweite Ausdruck.
+Short Hand If Else (Meistens nur Ternary Operator) ist der einzige Ternäre Operator in Java. Ein ternäre Operator bestimmt einen neuen Wert anhand von *drei* Ausdrücken. Die Zeichen `?` und `:` gehören beide zum selben Operator. Sie können die Zeichen nicht alle verwenden. Der Operator evaluiert die Bedingung. Falls die Bedingung Wahr ist, wird der erste Ausdruck zurück gegeben, ansonsten der zweite Ausdruck.
 
 ```java
 condition ? expr1 : expr2
