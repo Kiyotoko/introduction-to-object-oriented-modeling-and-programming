@@ -2,17 +2,15 @@
 
 = Deklaration <declaration>
 
-#definition(
-  "Deklaration",
-  "Eine Deklaration (engl.: _declaration_) führt einen Bezeichner ein und legt seine Eigenschaften innerhalb eines Programms fest.",
-)
+#definition("Deklaration")[
+  Eine Deklaration (engl. _declaration_) führt einen Bezeichner ein und legt seine Eigenschaften innerhalb eines Programms fest.
+]
 
 Um eine Variable verwenden zu können, muss sie zunächst deklariert werden. Eine Variablendeklaration legt den Namen und den Datentyp einer Variable fest.
 
-#definition(
-  "Datentyp",
-  "Ein Datentyp (engl.: _data type_) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich",
-)
+#definition("Datentyp")[
+  Ein Datentyp (engl. _data type_) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich.
+]
 
 Es wird immer zuerst der Datentyp festgelegt und dann der Name der Variable. Anschließend kann der Variablen direkt ein Wert zugewiesen werden.
 Beispiel für eine Variablendeklaration mit Initialisierung:

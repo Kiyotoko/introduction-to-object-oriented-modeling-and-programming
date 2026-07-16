@@ -65,10 +65,9 @@ jshell> b
 
 == If/Else
 
-#definition(
-  "Kontrollstruktur",
-  "Kontrollstrukturen (engl.: „control structures“) sind Syntaxkonstrukte, die dazu dienen, Anweisungen zu strukturieren und deren Ausführungsreihenfolge und -häufigkeiten festzulegen.",
-)
+#definition("Kontrollstruktur")[
+  Kontrollstrukturen (engl.: _control structures_) sind Syntaxkonstrukte, die dazu dienen, Anweisungen zu strukturieren und deren Ausführungsreihenfolge und -häufigkeiten festzulegen.
+]
 
 Bedingte Ausführung kann durch eine If/Else-Verzweigung erreicht werden.
 

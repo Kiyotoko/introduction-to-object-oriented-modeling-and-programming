@@ -3,9 +3,9 @@
 = Ausdrücke
 Um gespeicherte Informationen verarbeiten zu können braucht es eine eindeutige Interpretation der gespeicherten Bits. Gleichzeitig soll beim Programmieren von der Hardwaredarstellung der Informationen abstrahiert werden. Dafür werden *Datentypen* definiert.
 
-#definition("Datentypen", [
-  Ein *Datentyp* (engl.: "data type") ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich.
-])
+#definition("Datentypen")[
+  Ein Datentyp (engl. _data type_) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich.
+]
 
 In Java sind primitive Datentypen für Zahlen, Wahrheitswerte und Zeichen definiert. Es gibt dabei verschiedene Varianten, je nachdem wie viel Speicher für einen Wert dieses Datentyps reserviert wird. Zeichenketten werden durch die Klasse `String` dargestellt.
 Zahlen in Java sind entweder Ganzzahlen (Integers) oder Gleitkommazahlen (engl. _floating point numbers_). Alle Zahlen in Java werden mit einem Vorzeichen abgespeichert (Plus/Minus). In der folgenden Tabelle sind Javas primitiven Datentypen für Zahlen angegeben:
@@ -24,7 +24,7 @@ Zahlen in Java sind entweder Ganzzahlen (Integers) oder Gleitkommazahlen (engl. 
 Die anderen primitiven Datentypen werden später besprochen. Zuerst wollen wir Daten mit Variablen und Operatoren verbinden und so neue Werte beschreiben. Analog wie Terme in der Mathematik verwenden wir dazu Ausdrücke:
 
 #definition("Ausdruck", [
-  Ein Ausdruck (engl.: „expression“) ist ein Syntaxkonstrukt, das zur Beschreibung eines Wertes dient. Es gibt folgende Arten von Ausdrücken:
+  Ein Ausdruck (engl. _expression_) ist ein Syntaxkonstrukt, das zur Beschreibung eines Wertes dient. Es gibt folgende Arten von Ausdrücken:
 
   - Literale
   - Variablen
@@ -33,7 +33,7 @@ Die anderen primitiven Datentypen werden später besprochen. Zuerst wollen wir D
 ])
 
 #definition("Auswertung", [
-  Die Auswertung (engl.: „evaluation“) eines Ausdrucks ist die Bestimmung des Wertes dieses Ausdrucks.
+  Die Auswertung (engl.: _evaluation_) eines Ausdrucks ist die Bestimmung des Wertes dieses Ausdrucks.
  ])
 
 == Literale
@@ -52,10 +52,9 @@ Beispiele für Zahlliterale sind
 
 Booleans sind Wahrheitswerte, welche entweder den Wert wahr (`true`) oder falsch (`false`) haben. Dabei sind `true` und `false` Schlüsselwörter.
 
-#definition(
-  "Schlüsselwort",
-  "Schlüsselwörter (engl. „keywords“ oder „reserved words“) bestehen wie Bezeichner aus Buchstaben-Zahlen-Kombinationen, haben aber eine feste Bedeutung innerhalb der Programmiersprache, stehen daher nicht als Bezeichner zur Verfügung.",
-)
+#definition("Schlüsselwort")[
+  Schlüsselwörter (engl. _keywords_ oder _reserved words_) bestehen wie Bezeichner aus Buchstaben-Zahlen-Kombinationen, haben aber eine feste Bedeutung innerhalb der Programmiersprache, stehen daher nicht als Bezeichner zur Verfügung.
+]
 
 Chars sind einzelne Zeichen wie Buchstaben, Nummern oder Satzzeichen. Ein String ist eine Zeichenkette.
 

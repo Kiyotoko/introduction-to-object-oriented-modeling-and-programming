@@ -27,7 +27,7 @@ abstract class YourClass {
 
 == Verschachtelte Klassen
 
-Eine verschachtelte Klasse (engl.: „nested class“) ist eine Klasse, welche in einer anderen Klasse verschachtelt ist. Eine solche Klasse kann auf alle private Attribute und Methode der äußeren Klasse (engl.: „outer class“) zugreifen.
+Eine verschachtelte Klasse (engl.: _nested class_) ist eine Klasse, welche in einer anderen Klasse verschachtelt ist. Eine solche Klasse kann auf alle private Attribute und Methode der äußeren Klasse (engl.: _outer class_) zugreifen.
 
 Es gibt statische und nicht-statische verschachtelte Klassen. Statische Klasse sind unabhängig von den Instanzen der äußeren Klasse und können wie andere Klassen direkt über `new` erstellt werden. Nicht-statische Klassen sind
 

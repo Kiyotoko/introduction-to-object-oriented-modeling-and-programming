@@ -3,7 +3,7 @@
 
 = Collections
 
-Die Java Collections API erlaubt es, Daten auf verschiedene Daten abzuspeichern und anzuordnen. Man verwendet verschiedene Datentypen für verschiedene Verwendungszwecke. Die richte Sammlung (engl.: „collection“) auszuwählen ist ein wichtiger Faktor für die Performance Ihrer Anwendungen.
+Die Java Collections API erlaubt es, Daten auf verschiedene Daten abzuspeichern und anzuordnen. Man verwendet verschiedene Datentypen für verschiedene Verwendungszwecke. Die richte Sammlung (engl. _collection_) auszuwählen ist ein wichtiger Faktor für die Performance Ihrer Anwendungen.
 
 == List
 
