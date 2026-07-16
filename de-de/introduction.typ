@@ -2,13 +2,13 @@
 
 = Einführung
 
-In diesem Modul werden Sie objektorientierte Programmierung in Java sowie Modellierung in UML lernen.
+In diesem Modul lernen Sie die Grundlagen der objektorientierten Programmierung in Java sowie der Modellierung mit UML kennen.
 
-== Hinweise zum Script
+== Hinweise zum Skript
 
 Dieses Skript ist als Hilfestellung für Studierende gedacht. Trotz großer Sorgfalt beim Erstellen kann keine Garantie für Fehlerfreiheit übernommen werden. Es wird ausdrücklich darauf hingewiesen, dass der prüfungsrelevante Stoff durch die Vorlesung bestimmt wird und mit dem Skriptinhalt nicht vollständig übereinstimmen muss.
 
-#definition("Begriff", "Ein ausführliche Definition für den Begriff.")
+#definition("Begriff", "Eine ausführliche Definition für den Begriff.")
 
 #complementary(
   "Zusatzwissen",
@@ -27,26 +27,26 @@ Dieses Skript ist als Hilfestellung für Studierende gedacht. Trotz großer Sorg
 
 == Aufbau des Skriptes
 
-In diesem Skript behandelt wir zunächst alle Grundlagen. Die ersten Kapiteln befassen sich mit der Installation, einfachen Ausdrücken, Deklarationen und Anweisungen. Dabei werden die Basics von imperativen Programmieren erklärt.
+In diesem Skript behandeln wir zunächst alle Grundlagen. Die ersten Kapitel befassen sich mit der Installation, einfachen Ausdrücken, Deklarationen und Anweisungen. Dabei werden die Grundlagen des imperativen Programmierens erläutert.
 
-Danach befassen wir uns mit objekt orientierten Konzeption wie Klassen und Vererbung. Wir werden uns anschauen, wie Klassen funktionieren, wie Vererbung funktioniert und wann man sie überhaupt nutzen sollte. Dabei werden wir uns ebenfalls mit Moddellirung von Klassen mithilfe von UML beschäftigen.
+Danach behandeln wir die Konzepte der objektorientierten Programmierung, wie Klassen und Vererbung. Wir betrachten, wie Klassen aufgebaut sind, wie Vererbung funktioniert und wann sie sinnvoll eingesetzt wird. Außerdem beschäftigen wir uns mit der Modellierung von Klassen mithilfe von UML.
 
-Wir werden auf Java Spezifische Strukturen wie Generics, die Java Collections API eingehen als auch Interfaces, Exceptions und mehr eingehen.
+Darauf aufbauend beschäftigen wir uns mit Java-spezifischen Konzepten wie Generics, die Java Collections API, Interfaces und Exceptions.
 
-Zum Abschluss behandeln wirkurz einige Konzepte von Software Engineering und wie Sie in Zukunft besseren Code schreiben können.
+Zum Abschluss behandeln wir kurz einige Konzepte von Software Engineering und wie Sie in Zukunft besseren Code schreiben können.
 
 == Was ist Modellierung?
 
-Bevor wir mit der Moddellirung mit UML anfangen, stellt sich die Frage: Was ist überhaupt ein Modell? Was ist Modellierung? Und warum sollten wir überhaupt Moddellirung nutzen?
+Bevor wir mit der Modellierung mit UML beginnen, stellt sich die Frage: Was ist überhaupt ein Modell? Was ist Modellierung? Und warum sollten wir überhaupt Modellierung nutzen?
 
 Ein Modell ist:
 - *Abbildung:* Basiert auf einem Original
 - *Reduktion:* Stellt nur die relevanten Eigenschaften dar
 - *Pragmatisch:* Das Modell beschreibt für bestimmte Fragestellungen das Original
 
-Modellierung ist der Prozess, indem ein System zu einem Modell umgewandelt wird.
+Modellierung ist der Prozess, bei dem ein System zu einem Modell umgewandelt wird.
 
-Warum überhaupt Modellierung? Die Probleme der realen Welt sind zu komplex, um sie in der gänze darzustellen. Stattdessen verwenden wir Modelle, um sie vereinfacht und struturiert darzustellen. Durch die graphische Darstellung in UML erhalten wir eine einfache Übersicht über die Teils sehr komplexe Struktur unserer Projekte. @kuhne2005model
+Warum überhaupt Modellierung? Die Probleme der realen Welt sind zu komplex, um sie in der Gänze darzustellen. Stattdessen verwenden wir Modelle, um sie vereinfacht und strukturiert darzustellen. Durch die grafische Darstellung in UML erhalten wir eine einfache Übersicht über die teils sehr komplexe Struktur unserer Projekte. @kuhne2005model
 
 == Was ist Programmierung?
 
@@ -55,18 +55,18 @@ Warum überhaupt Modellierung? Die Probleme der realen Welt sind zu komplex, um 
 ]
 
 #definition("Programm")[
-  Ein Programm ist ein Algorithmus in maschinenlesbarer Form.
+  Ein Programm ist die Umsetzung eines oder mehrerer Algorithmen in einer Programmiersprache.
 ]
 
 #definition("Programmiersprache")[
   Eine Programmiersprache ist ein notationelles System zur Beschreibung von Berechnungen in durch Maschinen und Menschen lesbarer Form.
 ]
 
-In der Programmierung wird ein Programm geschrieben, welche einen Algorithmus in maschinenlesbarer Form beschreibt. Da man in der Regel nicht mit 0 und 1 ein Programm beschreiben möchte, verwendet man eine Programmiersprache, hier Java. Das Umwandeln der Programmiersprache in Bytecode nennt man compilieren.
+In der Programmierung wird ein Programm geschrieben, das einen oder mehrere Algorithmen in einer Programmiersprache umsetzt. Da man in der Regel nicht mit 0 und 1 ein Programm beschreiben möchte, verwendet man eine Programmiersprache, hier Java. Das Übersetzen von Java-Quellcode in Java-Bytecode nennt man Kompilieren.
 
 == Was ist objekt-orientierte Programmierung?
 
-Unsere Systeme bestehen aus Objekten, die im Austausch miteinander stehen. Wir modellieren diese Objekte und Beziehungen zueinander. Gleichartige Objekte fassen wir zu Klassen zusammen. @hesse2008
+In der objektorientierten Programmierung wird ein Programm als Zusammenspiel vieler Objekte betrachtet. Jedes Objekt besitzt einen Zustand und ein Verhalten und kommuniziert mit anderen Objekten. Wir modellieren diese Objekte und Beziehungen zueinander. Gleichartige Objekte fassen wir zu Klassen zusammen. @hesse2008
 
 Zentrale Frage:
 #align(center)[
@@ -78,6 +78,6 @@ Zentrale Frage:
 - Gleich aufgebaute Objekte sind zu Klassen zusammengefasst
 - Verhalten bei Eintreffen von Nachricht: meist imperativ beschrieben
 
-== Source Code
+== Quellcode
 
-Die Quelldateien zu diesem Script können auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml")[Codeberg] gefunden werden.
+Die Quelldateien zu diesem Skript können auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml")[Codeberg] gefunden werden.

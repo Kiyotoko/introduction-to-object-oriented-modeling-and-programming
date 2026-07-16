@@ -1,34 +1,51 @@
 #import "../common/callouts.typ": *
 
-= Deklaration
+= Deklaration <declaration>
 
 #definition(
   "Deklaration",
-  "Eine Deklaration (engl.: „declaration“) vereinbart die Rolle eines Bezeichners innerhalb eines Programms.",
+  "Eine Deklaration (engl.: _declaration_) führt einen Bezeichner ein und legt seine Eigenschaften innerhalb eines Programms fest.",
 )
 
-Um eine Variable zu erstellen, muss diese zuerst deklariert werden. Das Deklarieren eines Datentypes spezifiziert die Daten und den Datentyp eines Datentypes.
+Um eine Variable verwenden zu können, muss sie zunächst deklariert werden. Eine Variablendeklaration legt den Namen und den Datentyp einer Variable fest.
 
 #definition(
   "Datentyp",
-  "Ein Datentyp (engl.: „data type“) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich",
+  "Ein Datentyp (engl.: _data type_) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich",
 )
 
-Es wird immer zuerst der Datentyp festgelegt und dann der Name der Variable. Danach kann der Variable direkt ein Wert zugewiesen werden.
-Deklarieren von Datentypen:
+Es wird immer zuerst der Datentyp festgelegt und dann der Name der Variable. Anschließend kann der Variablen direkt ein Wert zugewiesen werden.
+Beispiel für eine Variablendeklaration mit Initialisierung:
 
 ```java
 jshell> int a = 1;
 a ==> 1
 ```
 
-Hier wurde der Variable `a` vom Datentyp `int` dem Wert `1` zugewiesen. Die Zuweisung ist optional:
+Hier wurde eine Variable `a` vom Datentyp `int` mit dem Wert `1` initialisiert. Eine Variable kann zunächst ohne Wert deklariert werden. Lokale Variablen müssen jedoch vor ihrer Verwendung einen Wert erhalten. Attribute von Objekten und statische Variablen erhalten automatisch einen Standardwert.
 
 ```java
-jshell> int a;
-a ==> 0
+int a = 1; // Deklaration + Initialisierung
+int b; // Deklaration
+b = 2; // Zuweisung
 ```
 
-Hier wurde `a` kein Wert bei der Deklaration zugewiesen. In diesem Fall wird der Default Wert genutzt. Bei Zahlen ist dies `0` bzw. `0.0` für Fließkommazahlen, bei Booleans `false` und bei Objekten `null`.
+Hier wurde `b` kein Wert bei der Deklaration zugewiesen. Das Lesen einer nicht initialisierten lokalen Variable ist nicht erlaubt:
 
-Deklaration und später auch Statements werden mit einem Semicolon (`;`) beendet. Das Semicolon zeigt an, wann eine Deklaration endet und das nächste Anfängt. Wie viele Leerzeichen, Tabs oder neue Zeilen dazwischen liegen, ist für Java nicht relevant.
+```java
+{ int i; System.out.println(i);}
+|  Error:
+|  variable i might not have been initialized
+|  { int i; System.out.println(i);}
+|                              ^
+```
+
+Bei Attributen und Array-Elementen wird der Standardwert genutzt. Bei Zahlen ist dies `0` bzw. `0.0` für Gleitkommazahlen, bei Booleans `false` und bei Objekten `null`.
+
+```java
+class Example {
+  int a; // Automatisch 0
+}
+```
+
+Deklaration und später auch Anweisungen werden mit einem Semikolon (`;`) beendet. Das Semikolon markiert das Ende vieler Anweisungen in Java. Die Anzahl von Leerzeichen, Tabs oder Zeilenumbrüchen zwischen den Bestandteilen einer Anweisung ist für Java nicht relevant.
