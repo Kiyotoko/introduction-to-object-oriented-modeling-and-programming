@@ -86,18 +86,23 @@ Binäre Operationen sind Operationen, welche *zwei* Ausdrücke nehmen und einen 
 Häufige Operationen auf Zahlen sind:
 
 ```java
-1.0 + 2.0
-1.0 - 2.0
-1.0 * 2.0
-1.0 / 2.0
-15 % 6 // Modulo, evaluiert zu 3
+jshell> 1.0 + 2.0
+$1 ==> 3.0
+jshell> 1.0 - 2.0
+$2 ==> -1.0
+jshell> 1.0 * 2.0
+$3 ==> 2.0
+jshell> 1.0 / 2.0
+$4 ==> 0.5
+jshell> 15 % 6 // Modulo
+$5 ==> 3
 ```
 
 #example("Integer Division", [
   Wenn beide Seiten einer Division Integers sind, wird Integer Division verwendet. Dabei wird nur das ganzzahlige Ergebnis der Division verwendet und der Rest wird ignoriert. Somit ergibt:
 
   ```java
-  1 / 3
+  jshell> 1 / 3
   ```
 
   nicht etwa ~`0.3333`, sondern `0`.
@@ -106,17 +111,23 @@ Häufige Operationen auf Zahlen sind:
 Häufige Boolean Operationen sind:
 
 ```java
-true && true // Und, evaluiert zu true
-true && false // Evaluiert zu false
-true || false // Oder, evaluiert zu true
-false || false // Evaluiert zu false
+jshell> true && true // Und
+$6 ==> true
+jshell> true && false
+$7 ==> false
+jshell> true || false // Oder
+$8 ==> true
+jshell> false || false
+$9 ==> false
 ```
 
 Die Operationen Und sowie Oder haben in Java Lazy Evaluation. Dies bedeutet, dass ein Ausdruck nur dann ausgewertet wird, wenn er verwendet wird.
 
 ```java
-false && (/* Hier würde ein Fehler entstehen */)
-true || (/* Hier würde ein Fehler entstehen */)
+jshell> false && (/* Hier würde ein Fehler entstehen */)
+$10 ==> false
+jshell> true || (/* Hier würde ein Fehler entstehen */)
+$11 ==> true
 ```
 
 == Ternäre Operationen
@@ -125,4 +136,9 @@ Short Hand If Else (Meistens nur Ternary Operator) ist der einzige Ternäre Oper
 
 ```java
 condition ? expr1 : expr2
+```
+
+```java
+jshell> true ? "Wahr" : "Falsch"
+$12 ==> "Wahr"
 ```

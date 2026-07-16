@@ -26,3 +26,5 @@
 #let complementary(title, content) = callout(purple, title, content)
 
 #let example(title, content) = callout(orange, title, content)
+
+#let task(title, content) = callout(green, title, content)

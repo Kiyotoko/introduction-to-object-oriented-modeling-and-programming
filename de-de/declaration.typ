@@ -18,15 +18,17 @@ Es wird immer zuerst der Datentyp festgelegt und dann der Name der Variable. Dan
 Deklarieren von Datentypen:
 
 ```java
-int a = 1;
+jshell> int a = 1;
+a ==> 1
 ```
 
 Hier wurde der Variable `a` vom Datentyp `int` dem Wert `1` zugewiesen. Die Zuweisung ist optional:
 
 ```java
-int a;
+jshell> int a;
+a ==> 0
 ```
 
-Hier wurde `a` kein Wert bei der Deklaration zugewiesen. In diesem Fall wird der Default Wert genutzt. Bei Zahlen ist dies `0` bzw. `0.0`, bei Booleans `false` und bei Objekten `null`.
+Hier wurde `a` kein Wert bei der Deklaration zugewiesen. In diesem Fall wird der Default Wert genutzt. Bei Zahlen ist dies `0` bzw. `0.0` für Fließkommazahlen, bei Booleans `false` und bei Objekten `null`.
 
-Deklaration und später auch Statements werden mit einem Semicolon (`;`) beendet. Das Semicolon zeigt an, wann eine Deklaration endet und die nächste Anfängt. Wie viele Leerzeichen, Tabs oder neue Zeilen dazwischen liegen, ist für Java nicht relevant.
+Deklaration und später auch Statements werden mit einem Semicolon (`;`) beendet. Das Semicolon zeigt an, wann eine Deklaration endet und das nächste Anfängt. Wie viele Leerzeichen, Tabs oder neue Zeilen dazwischen liegen, ist für Java nicht relevant.

@@ -48,6 +48,21 @@ int a;
 // Hier ist nur a verfügbar, b ist hier nicht definiert
 ```
 
+Variablen, welche in eunem Block deklariert sind, sind auch nur in ihrem Scope dort verfügbar. Wenn der Block endet, kann nicht mehr auf die Variable zugegriffen werden. Wenn mehrere Blöcke definiert werden, kann auf alle darüber liegenden Scopes zugegriffen werden.
+
+```java
+jshell> int a; { int b; }
+a ==> 0
+jshell> a
+a ==> 0
+jshell> b
+|  Error:
+|  cannot find symbol
+|    symbol:   variable b
+|  b
+|  
+```
+
 == If/Else
 
 #definition(
@@ -57,27 +72,29 @@ int a;
 
 Bedingte Ausführung kann durch If/Else erreicht werden.
 
-Wenn Boolean-Ausdruck (Condition) den Wert `true` hat, dann ist der Wert gleich dem Wert von Ausdruck 1 sonst dem Wert von Ausdruck 2. Dabei ist der Else-Teil optional.
+Wenn der Boolean-Ausdruck (Condition) einer bedingten Ausführung Wahr ist und somit den Wert `true` hat, dann wird die Anweisung 1 ausgeführt, ansonsten die Anweisung 2. Dabei ist der Else-Teil optional.
 
 ```java
 if (condition) {
-  // Ausdruck 1
+  // Anweisung 1
 } else {
-  // Ausdruck 2
+  // Anweisung 2
 }
 ```
 
 Es ist möglich, If/Else mehrfach aneinander zu reihen:
 
 ```java
-int value = ...;
-if (value < 0) {
-  // Wert ist negativ
-} else if (value > 0) {
-  // Wert ist positiv
-} else {
-  // Ansonsten, Wert ist 0
-}
+jshell> int value = -2;
+value ==> -2
+jshell> if (value < 0) {
+   ...>   System.out.println("Negativ");
+   ...> } else if (value > 0) {
+   ...>   System.out.println("Positiv");
+   ...> } else {
+   ...>   System.out.println("Null");
+   ...> }
+Negativ
 ```
 
 #example("If Branch", [
@@ -113,7 +130,7 @@ While und später For erlauben eine wiederholte Ausführung. Ein Statement wird 
 
 ```java
 while (condition) {
-  // Ausdruck
+  // Anweisung
 }
 ```
 
@@ -121,7 +138,7 @@ Wenn man erst ein Statement ausführen möchte, und erst danach die Bedingung ü
 
 ```java
 do {
-  // Ausdruck
+  // Anweisung
 } while (condition);
 ```
 
@@ -129,11 +146,39 @@ Wichtig: das Semicolon nach der Do/While Schleife ist wichtig!
 
 == For
 
+In Java kann man mithilfe von For Loops über einen Bereich iterieren. For Loops bestehen aus einem Startwert in der Deklaration, einer Bedingung, wie lange der Ausdruck aus geführt wird sowie einem Ausdruck, welcher bestimmt, in welchen Schritten die deklarierte Variable Erhöht wird.
+
 ```java
 for (declaration; condition; expression) {
-  // Ausdruck
+  // Anweisung
 }
 ```
+
+Um die ersten fünf Quadratzahlen auszugeben, können wir die folgende For Loop nutzen:
+
+```java
+jshell> for (int i = 1; i <= 5; i += 1) {
+   ...>   System.out.println(i * i);
+   ...> }
+1
+4
+9
+16
+25
+```
+
+Alternativ kann man For-Each Loops verwenden, um über eine Sammlung von Elementen zu iterieren.
+
+```java
+jshell> for (int i : new int[]{ 1, 2, 3 }) {
+   ...>   System.out.println(i);
+   ...> }
+1
+2
+3
+```
+
+Wie genau die hier dargestellten Arrays oder später auch die Java Collections funktionieren, erfahrne Sie in einem späteren Kapitel.
 
 == Break
 

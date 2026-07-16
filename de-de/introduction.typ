@@ -20,6 +20,21 @@ Dieses Skript ist als Hilfestellung für Studierende gedacht. Trotz großer Sorg
   "Ein Beispiel, welches auf bestimmte Grenzfälle oder häufige Fehler eingeht.",
 )
 
+#task(
+  "Aufgabe",
+  [Eine Aufgabe, in der Sie Ihr Wissen testen und selbst programmieren können. Die Lösungen dazu befinden sich auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml", "Codeberg").]
+)
+
+== Aufbau des Skriptes
+
+In diesem Skript behandelt wir zunächst alle Grundlagen. Die ersten Kapiteln befassen sich mit der Installation, einfachen Ausdrücken, Deklarationen und Anweisungen. Dabei werden die Basics von imperativen Programmieren erklärt.
+
+Danach befassen wir uns mit objekt orientierten Konzeption wie Klassen und Vererbung. Wir werden uns anschauen, wie Klassen funktionieren, wie Vererbung funktioniert und wann man sie überhaupt nutzen sollte. Dabei werden wir uns ebenfalls mit Moddellirung von Klassen mithilfe von UML beschäftigen.
+
+Wir werden auf Java Spezifische Strukturen wie Generics, die Java Collections API eingehen als auch Interfaces, Exceptions und mehr eingehen.
+
+Zum Abschluss behandeln wirkurz einige Konzepte von Software Engineering und wie Sie in Zukunft besseren Code schreiben können.
+
 == Was ist Modellierung?
 
 Bevor wir mit der Moddellirung mit UML anfangen, stellt sich die Frage: Was ist überhaupt ein Modell? Was ist Modellierung? Und warum sollten wir überhaupt Moddellirung nutzen?
@@ -65,4 +80,4 @@ Zentrale Frage:
 
 == Source Code
 
-Die Quelldateien zu diesem Script können auf #link("https://github.com/Kiyotoko/introduction-to-object-oriented-modeling-and-programming.git")[GitHub] gefunden werden.
+Die Quelldateien zu diesem Script können auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml")[Codeberg] gefunden werden.
