@@ -64,13 +64,13 @@ Auf das Element einer Liste kann mit dem Index zugegriffen werden.
     })
   })
 
-  Array Lists bestehen aus einem einzigen Array. In der Liste wird die Anzahl der Elemente und ein Zeiger auf das Array selbst abgespeichert. Die Elemente werden in das Array geschrieben. Wenn das Array voll ist, wird ein neues Array mit mehr Kapazität erstellt, alle Elemente werden kopiert und der Zeiger der Array Liste wird auf das neue Array geupdated.
+  Array Lists bestehen aus einem einzigen Array. In der Liste wird die Anzahl der Elemente und ein Zeiger auf das Array selbst abgespeichert. Die Elemente werden in das Array geschrieben. Wenn das Array voll ist, wird ein neues Array mit mehr Kapazität erstellt, alle Elemente werden kopiert und der Zeiger der Array Liste wird auf das neue Array geändert.
 
 ]
 
 == Set
 
-Sets sind Sammlungen, welche keine Duplikate haben. Sie sind vergleichbar mit Mengen aus Ihren Mathemodulen.
+Sets sind Sammlungen, welche keine Duplikate haben. Sie sind vergleichbar mit Mengen, welche bereits aus Ihren Mathe-Modulen bekannt sein sollten.
 
 == Map
 

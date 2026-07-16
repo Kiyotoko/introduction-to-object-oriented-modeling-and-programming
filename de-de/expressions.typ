@@ -4,7 +4,7 @@
 Um gespeicherte Informationen verarbeiten zu können braucht es eine eindeutige Interpretation der gespeicherten Bits. Gleichzeitig soll beim Programmieren von der Hardwaredarstellung der Informationen abstrahiert werden. Dafür werden *Datentypen* definiert.
 
 #definition("Datentypen", [
-  Ein *Datentyp* (engl.: "data type") ist gekennzeichnet durch einen Wertebereich sowie Opeartionen auf diesem Wertebereich.
+  Ein *Datentyp* (engl.: "data type") ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich.
 ])
 
 In Java sind primitiven Datentypen für Zahlen, Wahrheitswerte, Zeichen und Zeichenketten definiert. Es gibt dabei verschiedene Varianten, je nachdem wie viel Speicher für einen Wert dieses Datentyps reserviert wird.
@@ -37,7 +37,7 @@ Die anderen primitiven Datentypen werden später besprochen. Zuerst wollen wir D
 
 == Literale
 
-Ein Literal ist ein Ausdruck, der direkt einen Wert beschreibt. Zu den Literalen gehören alle Werte eines primitven Datentypes, also Zahlen, Booleans, Strings, Chars und Variablen.
+Ein Literal ist ein Ausdruck, der direkt einen Wert beschreibt. Zu den Literalen gehören alle Werte eines primitiven Datentypes, also Zahlen, Booleans, Strings, Chars und Variablen.
 
 Beispiele für Zahlliterale sind 
 ```java

@@ -2,7 +2,7 @@
 
 Interfaces sind Schnittstellen, die eine Menge an Methoden bereitstellen. Alle Interfaces sind abstrakt.
 
-- Methoden sind standartmäßig public und abstract
+- Methoden sind generell ```java public``` und ```java abstract```
 - Methoden können einen default Modifikator haben, um eine Implementierung zu erlauben
 - Intefaces können keine Konstruktoren irgendeiner Art haben und haben keine Attribute.
 
@@ -37,7 +37,7 @@ Consumer<Object> consumer = new Consumer<>() {
 
 == Initialisierung eines neuen Interfaces
 
-Falls ein Interface nur eine einzige abstrakte Methode hat, handelt es sich um ein Functional Interface und man kann einen Lamda-Ausdruck verwenden. Ein Lambda-Ausdruck definiert nur die abstrakte Methode.
+Falls ein Interface nur eine einzige abstrakte Methode hat, handelt es sich um ein Functional Interface und man kann einen Lambda-Ausdruck verwenden. Ein Lambda-Ausdruck definiert nur die abstrakte Methode.
 
 ```java
 Consumer<Object> consumer = (Object t) -> {
@@ -45,7 +45,7 @@ Consumer<Object> consumer = (Object t) -> {
 };
 ```
 
-Dabei sind ```java (Object t)``` die Liste an argumenten, hier nur ein Objekt namens `t`. Der Pfeil (`->`) zeigt, dass es ein Lamda-Ausdruck ist. Zum Schluss kommt der Body der Methode. Die Bezeichnung der Datentypen können immer weggelassen werden. Falls die Methode nur ein Argument hat, kann man auch die runden Klammern weglassen:
+Dabei sind ```java (Object t)``` die Liste an Argumenten, hier nur ein Objekt namens `t`. Der Pfeil (`->`) zeigt, dass es ein Lambda-Ausdruck ist. Zum Schluss kommt der Body der Methode. Die Bezeichnung der Datentypen können immer weggelassen werden. Falls die Methode nur ein Argument hat, kann man auch die runden Klammern weglassen:
 
 ```java
 Consumer<Object> consumer = t -> {

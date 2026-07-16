@@ -33,7 +33,7 @@ Es gibt statische und nicht-statische verschachtelte Klassen. Statische Klasse s
 
 ```java
 class Outer {
-  satic class StaticNested {
+  static class StaticNested {
     // Klasse befindet sich innerhalb einer anderen Klassen
   }
 

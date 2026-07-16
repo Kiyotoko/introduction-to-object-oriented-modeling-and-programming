@@ -2,7 +2,7 @@
 
 = Einführung
 
-In diesem Modul werden Sie object-orientierte Programmierung in Java sowie Modellierung in UML lernen.
+In diesem Modul werden Sie objektorientierte Programmierung in Java sowie Modellierung in UML lernen.
 
 == Hinweise zum Script
 
