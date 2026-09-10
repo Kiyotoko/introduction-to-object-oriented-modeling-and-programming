@@ -30,13 +30,16 @@ b = 2; // Zuweisung
 
 Hier wurde `b` kein Wert bei der Deklaration zugewiesen. Das Lesen einer nicht initialisierten lokalen Variable ist nicht erlaubt:
 
-```java
-{ int i; System.out.println(i);}
-|  Error:
-|  variable i might not have been initialized
-|  { int i; System.out.println(i);}
-|                              ^
-```
+#compile-error()[
+  ```java
+  { int i; System.out.println(i);}
+  |  Error:
+  |  variable i might not have been initialized
+  |  { int i; System.out.println(i);}
+  |                              ^
+  ```
+]
+
 
 Bei Attributen und Array-Elementen wird der Standardwert genutzt. Bei Zahlen ist dies `0` bzw. `0.0` für Gleitkommazahlen, bei Booleans `false` und bei Objekten `null`.
 

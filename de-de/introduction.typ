@@ -8,6 +8,8 @@ In diesem Modul lernen Sie die Grundlagen der objektorientierten Programmierung 
 
 Dieses Skript ist als Hilfestellung für Studierende gedacht. Trotz großer Sorgfalt beim Erstellen kann keine Garantie für Fehlerfreiheit übernommen werden. Es wird ausdrücklich darauf hingewiesen, dass der prüfungsrelevante Stoff durch die Vorlesung bestimmt wird und mit dem Skriptinhalt nicht vollständig übereinstimmen muss.
 
+In diesem Skript werden Begriffe, Zusatzwissen, Beispiele als auch Aufgaben zum selbstständigen erarbeiten visuell vorher gehoben:
+
 #definition("Begriff", "Eine ausführliche Definition für den Begriff.")
 
 #complementary(
@@ -22,12 +24,33 @@ Dieses Skript ist als Hilfestellung für Studierende gedacht. Trotz großer Sorg
 
 #task(
   "Aufgabe",
-  [Eine Aufgabe, in der Sie Ihr Wissen testen und selbst programmieren können. Die Lösungen dazu befinden sich auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml", "Codeberg").]
+  [Eine Aufgabe, in der Sie Ihr Wissen testen und selbst programmieren können. Die Lösungen dazu befinden sich auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml", "Codeberg").],
+)
+
+Darüber hinaus befassen wir uns immer wieder mit konkreten Codebeispielen. Dabei wird nicht nur gezeigt, wie man etwas in Java schreibt, sondern auch, was man nicht machen sollte und welche Fehler dabei entstehen können. Daher werden alle Beispiele, die ein Problem aufweisen, oben an der Seite ein Symbol haben:
+
+#table(
+  columns: (1fr, 2fr),
+  table.header(strong("Kaffeetasse"), strong("Bedeutung")),
+  compile-error[```java
+  1 == "1"
+  ```],
+  [Dieser Code kompiliert nicht.],
+
+  runtime-error[```java
+  1 / 0
+  ```],
+  [Dieser Code wirft einen Fehler.],
+
+  unexpected-result[```java
+  1 / 3
+  ```],
+  [Dieser Code produziert nicht das gewollte Ergebnis.],
 )
 
 == Aufbau des Skriptes
 
-In diesem Skript behandeln wir zunächst alle Grundlagen. Die ersten Kapitel befassen sich mit der Installation, einfachen Ausdrücken, Deklarationen und Anweisungen. Dabei werden die Grundlagen des imperativen Programmierens erläutert.
+In diesem Skript behandeln wir zunächst alle Grundlagen. Die ersten Kapitel befassen sich mit der Installation, einfachen Ausdrücken, Deklarationen und Anweisungen. Dabei werden die Grundlagen des imperativen Programmierens erläutert. Von Anfang wird alles genau bis ins kleinste Detail erklärt.
 
 Danach behandeln wir die Konzepte der objektorientierten Programmierung, wie Klassen und Vererbung. Wir betrachten, wie Klassen aufgebaut sind, wie Vererbung funktioniert und wann sie sinnvoll eingesetzt wird. Außerdem beschäftigen wir uns mit der Modellierung von Klassen mithilfe von UML.
 

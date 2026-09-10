@@ -2,10 +2,12 @@
 
 #show: conf.with(lang: "de")
 
+#let title = "Einführung in die objekt-orientierte Modellierung und Programmierung"
+#set document(title: title)
 #align(center + horizon, {
   text(
     26pt,
-    "Einführung in die objekt-orientierte Modellierung und Programmierung",
+    title,
     weight: "extrabold",
   )
 })

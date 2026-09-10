@@ -50,18 +50,21 @@ int a;
 
 Variablen, welche in einem Block deklariert sind, sind auch nur in ihrem Bereich dort verfügbar. Wenn der Block endet, kann nicht mehr auf die Variable zugegriffen werden. Wenn mehrere Blöcke definiert werden, kann auf alle darüber liegenden Bereiche zugegriffen werden.
 
-```java
-jshell> int a; { int b; }
-a ==> 0
-jshell> a
-a ==> 0
-jshell> b
-|  Error:
-|  cannot find symbol
-|    symbol:   variable b
-|  b
-|  
-```
+#compile-error()[
+
+  ```java
+  jshell> int a; { int b; }
+  a ==> 0
+  jshell> a
+  a ==> 0
+  jshell> b
+  |  Error:
+  |  cannot find symbol
+  |    symbol:   variable b
+  |  b
+  |
+  ```
+]
 
 == If/Else
 
