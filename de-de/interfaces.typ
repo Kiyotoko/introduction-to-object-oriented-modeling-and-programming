@@ -108,7 +108,6 @@ In diesem Kapitel ist zwar das einzige vorgestellte Interface, dennoch gibt es n
 
 In UML werden Interfaces mit dem Tag `>>interface<<` dargestellt. Da es keine Attribute gibt, werden nur die Methoden dargestellt. Wenn eine Klasse ein Interface implementiert, wird dies durch einen gestrichelten Pfeil gekenzeichnet. Alles andere wie Vererbung unter Interfaces und Methoden wird genauso dargestellt wie auch bei Klassen.
 
-#align(right)[
 ```source-diagram-java
 @Layout(level=0, order=0)
 interface Collection {
@@ -126,7 +125,7 @@ class ArrayList implements List {
 
   public ArrayList();
 }
-```]
+```
 
 == Annotationen
 

@@ -13,7 +13,6 @@
     inset: 10pt,
     radius: 4pt,
   )
-  show raw.where(lang: "source-diagram-java"): set align(center)
   show: setup-sourceuml.with(theme: (
     // Header colors per class type
     class-header: (

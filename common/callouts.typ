@@ -27,6 +27,7 @@
     radius: (top-left: 10pt, bottom-right: 10pt, rest: 0pt),
   ),
   title: title,
+  breakable: true,
   content,
 )
 
