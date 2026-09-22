@@ -104,6 +104,30 @@ Dieser Syntax kann neben Iterable nur noch auf Arrays angewandt werden. Dabei im
 
 In diesem Kapitel ist zwar das einzige vorgestellte Interface, dennoch gibt es noch viele mehr. Dazu gehören zum Beispiel `Clonable`, `Runnable`, `RandomAccess`, `AutoClosable`, `List`, `Map`, `Set` und noch viele mehr. Viele davon wurden bereits am Rande eingeführt und andere werden noch besprochen. Nur die beiden Interfaces `Iterable` und `AutoClosable` erlauben das verwenden von neuen Syntax Strukturen.
 
+== Darstellung in UML
+
+In UML werden Interfaces mit dem Tag `>>interface<<` dargestellt. Da es keine Attribute gibt, werden nur die Methoden dargestellt. Wenn eine Klasse ein Interface implementiert, wird dies durch einen gestrichelten Pfeil gekenzeichnet. Alles andere wie Vererbung unter Interfaces und Methoden wird genauso dargestellt wie auch bei Klassen.
+
+#align(right)[
+```source-diagram-java
+@Layout(level=0, order=0)
+interface Collection {
+  public T add();
+  public boolean remove(Object obj);
+}
+@Layout(level=0, order=1)
+interface List extends Collection {
+  public T get(int index);
+  public T set(int index, T value);
+}
+@Layout(level=0, order=2)
+class ArrayList implements List {
+  protected int modCount;
+
+  public ArrayList();
+}
+```]
+
 == Annotationen
 
 Alle Annotation sind eigentlich nur Interfaces#footnote[Und Interfaces eigentlich nur besonders tolle abstrakte Klassen.]. Genau wie Interfaces haben diese keine Konstruktoren oder Attribute und bieten stattdessen Methoden als Schnittstellen an. Die Annotation ```java @Override``` haben Sie bereits aus dem Kapitel Vererbung kennengelernt.
