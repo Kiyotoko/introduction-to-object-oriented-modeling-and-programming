@@ -136,6 +136,8 @@ while (condition) {
 }
 ```
 
+Was passiert, wenn die Bedingung sich nie ändert und immer Wahr bleibt? In diesem Fall erzeugt man eine Endlosschleife und die Anweisung wird immer wieder ausgeführt. Falls dies nicht beabsichtig war, können Sie ein Programm mit `CTRL + C` abbrechen.
+
 Wenn man erst ein Statement ausführen möchte, und erst danach die Bedingung überprüfen will, kann man die Do/While Schleife nutzen:
 
 ```java
@@ -144,7 +146,7 @@ do {
 } while (condition);
 ```
 
-Wichtig: das Semicolon nach der Do/While Schleife ist wichtig!
+Wichtig: das Semicolon nach der Do/While Schleife kann nicht weggelassen werden!
 
 == For
 
@@ -160,24 +162,18 @@ Um die ersten fünf Quadratzahlen auszugeben, können wir die folgende For-Schle
 
 ```java
 jshell> for (int i = 1; i <= 5; i += 1) {
-   ...>   System.out.println(i * i);
+   ...>   System.out.printf("%d, ", i * i);
    ...> }
-1
-4
-9
-16
-25
+1, 4, 9, 16, 25,
 ```
 
 Alternativ kann man erweiterte For-Schleifen verwenden, um über eine Folge von Elementen zu iterieren.
 
 ```java
-jshell> for (int i : new int[]{ 1, 2, 3 }) {
-   ...>   System.out.println(i);
+jshell> for (int i : new int[]{ 1, 8, 7 }) {
+   ...>   System.out.printf("%d, ", i);
    ...> }
-1
-2
-3
+1, 8, 7,
 ```
 
 Wie genau die hier dargestellten Arrays oder später auch die Java Collections funktionieren, erfahren Sie in einem späteren Kapitel.
