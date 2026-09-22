@@ -194,6 +194,19 @@ for (...) { // Äußere Schleife
 }
 ```
 
+== Continue
+
+Ähnlich zu Break gibt es ebenfalls Continue. Anstatt eine Schleife zu beenden, wird stattdessen nur der aktuelle Durchlauf beendet und zum nächsten gegangen.
+
+```java
+long l = 10.0;
+for (double r = -10.0; r <= 10.0; r++) {
+  // Verhindere Division By 0
+  if (r == 0.0) continue;
+  System.out.println(l / r);
+}
+```
+
 #complementary("Labels", [
   Was macht man, wenn man nicht die innere, sondern die äußere Schleife verlassen will? Dafür kann man Labels verwenden. Labels sind Namen, mit denen man auf Anweisungen verweisen kann. Labels bestehen aus einem Bezeichner und einem Doppelpunkt (`:`). Manche Anweisungen wie zum Beispiel `break` können auf diese Labels verweisen.
 
