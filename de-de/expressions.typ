@@ -1,6 +1,7 @@
 #import "../common/callouts.typ": *
 
 = Ausdrücke
+
 Um gespeicherte Informationen verarbeiten zu können braucht es eine eindeutige Interpretation der gespeicherten Bits. Gleichzeitig soll beim Programmieren von der Hardwaredarstellung der Informationen abstrahiert werden. Dafür werden *Datentypen* definiert.
 
 #definition("Datentypen")[
@@ -155,3 +156,16 @@ condition ? expr1 : expr2
 jshell> true ? "Wahr" : "Falsch"
 $12 ==> "Wahr"
 ```
+
+#task("Auswertung von Ausdrücken")[
+  Was kommt bei den folgenden Ausdrücken als Ergebnis heraus?
+
+  ```java
+  jshell> 3 + (1 + 4) / 2 * 5
+  jshell> 5 * (5 - 4 / 3)
+  jshell> 0 / 0.0 == 0 / 0.0
+  jshell> 1 / 0.0 == 1 / 0.0
+  jshell> !(2 + 2 == 5) && (1 / 0 == 0)
+  jshell> !(2 + 2 < 5) && (1 / 0 == 0) ? "B" : "A"
+  ```
+]
