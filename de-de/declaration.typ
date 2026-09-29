@@ -50,3 +50,24 @@ class Example {
 ```
 
 Deklaration und später auch Anweisungen werden mit einem Semikolon (`;`) beendet. Das Semikolon markiert das Ende vieler Anweisungen in Java. Die Anzahl von Leerzeichen, Tabs oder Zeilenumbrüchen zwischen den Bestandteilen einer Anweisung ist für Java nicht relevant.
+
+#task("Typen & Variablen")[
+  1. Welche Typen haben die folgenden Ausdrücke?
+    ```java
+    jshell> 1 + 2
+    jshell> 1f + (byte) 2
+    jshell> 1f > (byte) 2
+    jshell> 1f + 2.0
+    jshell> '1' + 2
+    jshell> 1 + "2"
+    ```
+  2. Schreiben Sie einen Ausdruck, der die Quadratzahl einer Zahl $n$ zurückgibt. Dabei ist $n$ eine Variable des Types ```java int```.
+  3. Schreiben Sie einen Ausdruck, der den String ```java "Gerade"``` zurückgibt, wenn eine Zahl $n$ gerade ist, ansonsten ```java "Ungerade"``` zurückgibt.
+  4. Schreiben Sie einen Ausdruck, der die folgende Funktion berechnet:
+    $
+    f(n) = cases(
+      n \/ 2 & "falls" n "gerade ist"
+      3 dot n + 1 &  "falls" n "ungerade ist",
+    )
+    $
+]
