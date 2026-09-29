@@ -82,3 +82,11 @@
     rotate(-15deg, text(size: 10pt, emoji.crossmark)),
   ),
 )
+
+#let solution(url, content) = place(bottom+right, float: true,
+  box(width: 100pt,
+    callout(rgb(129, 105, 199), "",
+    link(url, [
+      #text(rgb(129, 105, 199), content)
+      #emoji.ballot.check
+]))))
