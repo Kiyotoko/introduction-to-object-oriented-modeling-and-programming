@@ -43,14 +43,17 @@ Im Beispiel oben heißt die Klasse Student. Diese definiert alle möglichen Attr
 == Attribute
 
 Ein Attribut ist eine Variable, welche zu einer Instanz gehört. Alle Klassen haben die gleichen Attribute. Oben hat die Klasse `Student` genau zwei Attribute angelegt: Name und Campus Card. Der Wert eines Attributes wird erst bei der Initialisierung mit `new` festgelegt. Jedes Attribut muss einen Typen und Namen haben.
-Zusätzlich kann ein Standard-Wert zugewiesen werden. Genau wie bei Variable haben auch alle Attribute einen Standard-Wert, bis dieser explizit anders deklariert wird. Für Zahlen ist dieser 0, für Wahrheitswerte `false` und für Objekte `null`.
+Zusätzlich kann ein Initialwert zugewiesen werden. Genau wie bei Variable haben auch alle Attribute einen Standard-Wert, bis dieser initialisiert wird. Für Zahlen ist dieser 0, für Wahrheitswerte `false` und für Objekte `null`.
 Anders als Variablen gehören Attribute zur Instanz und können einen Sichtbarkeit-Modifikator haben. Was genau ein solcher Modifikator macht und welche es überhaupt gibt, wird in einem späteren Kapitel erklärt.
 
 ```java
-class Katze {
+public class Katze {
+      // vvvvvv Datentyp
   public String besitzer;
-  //^^^^ Modifikator
+//^^^^^^        ^^^^^^^^ Modifikator und Name
   boolean flauschig = true;
+                 // ^^^^^^ Initialwert
+
 
   public static void main(String[] args) {
     Katze cheshire = new Katze();
@@ -65,7 +68,17 @@ class Katze {
 == Methoden
 
 Um Klassen ein Verhalten zu geben brauchen wir Methoden. 
-Ein Methode hat einen Namen, eine Liste von Argumenten sowie einen Rückgabetyp.
+Ein Methode hat einen Namen, eine Liste von Parametern sowie einen Rückgabetyp. Zusätzlich kann es einen einzigen Sichtbarkeitsmodifikator haben sowie eine beliebige Anzahl an verschiedenen Modifikatoren, die noch in den den nachfolgenden Kaptiteln eingeführt werden. Im nachfolgenden Beispeil ist die Methode Maximum dargestellt mit allen beschrifteten Bestandteilen:
+
+```java
+    // vvv          vvvvvvvvvvv Rückgabetyp und Parameter
+public int maximum(int a, int b) {
+//^^^^     ^^^^^^^ Modifikator und Name
+
+  // List von Anweisungen
+  return a > b ? a : b;
+}
+```
 
 Methoden können einen Wert berechnen und diesen zurückgeben. Der Typ dieses Wertes ist der Rückgabetyp. Die Schritte zur Berechnung besteht aus einer Liste von Anweisungen, die im Körper (_body_) der Methode definiert werden.
 
@@ -75,6 +88,27 @@ Der Name, die Liste der Parametern und der Rückgabetyp bilden zusammen die Sign
 
 Ein Konstruktor ist eine Methode, die ein Objekt instanziiert. Der Name des Konstruktor ist immer mit dem Namen der Klasse identisch und hat keinen Rückgabetyp.
 
+```java
+public class Katze {
+  private String besitzer;
+
+  public Katze(String besitzer) {
+    this.besitzer = besitzer;
+  }
+
+  public Katze() {
+    this.besitzer = "Alice";
+  }
+
+  public static void main(String[] args) {
+    Katze cheshire = new Katze();
+    System.out.println(cheshire.besitzer); // Alice
+    Katze donut = new Katze("Carl");
+    System.out.println(donut.besitzer); // Carl
+  }
+}
+```
+
 Wenn für eine Klasse kein eigener Konstruktor deklariert wird, gibt es immer einen Standard-Konstrukt, welcher keine Argumente nimmt und keine Attribute initialisiert. Im ersten Beispiel in der Klasse Student wurde ein Konstruktor deklariert, welcher die beiden Attribute Name und Campus Card initialisiert. Im zweiten Beispiel in der Klasse Katze wird kein Konstruktor deklariert. Somit gibt es dort den Standard-Konstrukt und es kann eine neue Instanz ohne Argumente erstellt werden.
 
 == Sichtbarkeit-Modifikatoren
@@ -83,13 +117,14 @@ Attribute, Methoden und Klassen haben einen Sichtbarkeits-Modifikator. Der Modif
 
 #{
   let x = align(center, [x])
+  show table.cell.where(y: 0): strong
   table(
     columns: { for _ in range(5) { (auto,) } },
-    strong[Modifikator], strong[Selbe Klasse], strong[Selbes Paket], strong[Erbt aus Klasse], strong[Überall],
-    ```java private```, x, [], [], [],
-    [Kein Modifikator], x, x, [], [],
-    ```java protected```, x, x, x, [],
-    ```java public```, x, x, x, x,
+    [Modifikator],        [Selbe Klasse], [Selbes Paket], [Erbt aus Klasse], [Überall],
+    ```java private```,   x,              [],             [],                [],
+    [Kein Modifikator],   x,              x,              [],                [],
+    ```java protected```, x,              x,              x,                 [],
+    ```java public```,    x,              x,              x,                 x,
   )
 }
 
