@@ -69,7 +69,7 @@ Consumer<Object> consumer = System.out::println(t);
 
 == Das Interface `Iterable`
 
-Das Interface Iterable ist ein wichtiges Interface der Java Standartbibliothek. Es erlaubt, eine Sammlung von Objekten abzulaufen, ohne deren innere Struktur zu kennen. Dafür müssen zwei Methoden implementiert werden: die erste Methode `hasNext()` gibt an, ob es noch Objekte gibt, die abgelaufen werden müssen. Die zweite Methode `next(...)` gibt das nächste Element zurück und geht dann eins weiter. 
+Das Interface Iterable ist ein wichtiges Interface der Java Standartbibliothek. Es erlaubt, eine Sammlung von Objekten abzulaufen, ohne deren innere Struktur zu kennen. Dafür müssen zwei Methoden implementiert werden: die erste Methode `hasNext()` gibt an, ob es noch Objekte gibt, die abgelaufen werden müssen. Die zweite Methode `next(...)` gibt das nächste Element zurück und geht dann eins weiter.
 
 ```java
 import java.util.*;

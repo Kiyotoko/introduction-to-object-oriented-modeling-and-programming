@@ -1,6 +1,6 @@
 = Immutable in Java
 
-Generell sind Daten, Methoden als auch Klassen in Java veränderbar. Eine Variable kann zum Beispiel überschrieben oder eine Klasse erweiter werden. Dies ist allerdings nicht immer gewollt. 
+Generell sind Daten, Methoden als auch Klassen in Java veränderbar. Eine Variable kann zum Beispiel überschrieben oder eine Klasse erweiter werden. Dies ist allerdings nicht immer gewollt.
 
 Wenn etwas veränderbar ist, nennen wir es mutable. Wenn es nicht veränderbar ist, immutable.
 

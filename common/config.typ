@@ -16,10 +16,10 @@
   show: setup-sourceuml.with(theme: (
     // Header colors per class type
     class-header: (
-      class:      (fill: rgb("#D4E6F1"), stroke: rgb("#2980B9")),
-      abstract:   (fill: rgb("#E8DAEF"), stroke: rgb("#8E44AD")),
-      interface:  (fill: rgb("#D5F5E3"), stroke: rgb("#27AE60")),
-      enum:       (fill: rgb("#FCF3CF"), stroke: rgb("#F39C12")),
+      class: (fill: rgb("#D4E6F1"), stroke: rgb("#2980B9")),
+      abstract: (fill: rgb("#E8DAEF"), stroke: rgb("#8E44AD")),
+      interface: (fill: rgb("#D5F5E3"), stroke: rgb("#27AE60")),
+      enum: (fill: rgb("#FCF3CF"), stroke: rgb("#F39C12")),
       annotation: (fill: rgb("#FADBD8"), stroke: rgb("#E74C3C")),
     ),
     // Body area
@@ -36,17 +36,17 @@
     ),
     // Visibility icon colors
     visibility-colors: (
-      public:    rgb("#27AE60"),
-      private:   rgb("#E74C3C"),
+      public: rgb("#27AE60"),
+      private: rgb("#E74C3C"),
       protected: rgb("#F39C12"),
-      package:   rgb("#2980B9"),
+      package: rgb("#2980B9"),
     ),
     // Visibility display symbols (shown in the diagram)
     visibility-symbols: (
-      public:    (field: "+", method: "+"),
-      private:   (field: "-", method: "-"),
+      public: (field: "+", method: "+"),
+      private: (field: "-", method: "-"),
       protected: (field: "~", method: "~"),
-      package:   (field: " ", method: " "),
+      package: (field: " ", method: " "),
     ),
     // Relation styles
     relation: (

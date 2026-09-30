@@ -65,9 +65,9 @@ Deklaration und später auch Anweisungen werden mit einem Semikolon (`;`) beende
   3. Schreiben Sie einen Ausdruck, der den String ```java "Gerade"``` zurückgibt, wenn eine Zahl $n$ gerade ist, ansonsten ```java "Ungerade"``` zurückgibt.
   4. Schreiben Sie einen Ausdruck, der die folgende Funktion berechnet:
     $
-    f(n) = cases(
-      n \/ 2 & "falls" n "gerade ist"
-      3 dot n + 1 &  "falls" n "ungerade ist",
-    )
+      f(n) = cases(
+        n \/ 2 & "falls" n "gerade ist",
+        3 dot n + 1 & "falls" n "ungerade ist"
+      )
     $
 ]

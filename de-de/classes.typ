@@ -67,7 +67,7 @@ public class Katze {
 
 == Methoden
 
-Um Klassen ein Verhalten zu geben brauchen wir Methoden. 
+Um Klassen ein Verhalten zu geben brauchen wir Methoden.
 Ein Methode hat einen Namen, eine Liste von Parametern sowie einen Rückgabetyp. Zusätzlich kann es einen einzigen Sichtbarkeitsmodifikator haben sowie eine beliebige Anzahl an verschiedenen Modifikatoren, die noch in den den nachfolgenden Kaptiteln eingeführt werden. Im nachfolgenden Beispeil ist die Methode Maximum dargestellt mit allen beschrifteten Bestandteilen:
 
 ```java
@@ -120,11 +120,11 @@ Attribute, Methoden und Klassen haben einen Sichtbarkeits-Modifikator. Der Modif
   show table.cell.where(y: 0): strong
   table(
     columns: { for _ in range(5) { (auto,) } },
-    [Modifikator],        [Selbe Klasse], [Selbes Paket], [Erbt aus Klasse], [Überall],
-    ```java private```,   x,              [],             [],                [],
-    [Kein Modifikator],   x,              x,              [],                [],
-    ```java protected```, x,              x,              x,                 [],
-    ```java public```,    x,              x,              x,                 x,
+    [Modifikator], [Selbe Klasse], [Selbes Paket], [Erbt aus Klasse], [Überall],
+    ```java private```, x, [], [], [],
+    [Kein Modifikator], x, x, [], [],
+    ```java protected```, x, x, x, [],
+    ```java public```, x, x, x, x,
   )
 }
 
@@ -134,31 +134,31 @@ Auf andere Instanzen oder Variablen kan mit Namen zugegriffen werden. Wenn man a
 
 Doch wann benötigt man überhaupt die eigene Instanz, wenn man auch einfach direkt über den Namen des Attributes oder der Methode verwenden kann? Dafür gibt es in der Regel drei mögliche Anwendungsfälle:
 1. ```java
-class DNA {
-  public DNA clone() {
-    // Gib die aktuelle Instanz zurück.
-    return this;
+  class DNA {
+    public DNA clone() {
+      // Gib die aktuelle Instanz zurück.
+      return this;
+    }
   }
-}
-``` Manchmal müssen wir die Instanz selbst zurück geben oder direkt darauf zugreifen können. Dafür kann `this` verwenden werden. Dabei ist `this` immer die aktuelle Instanz selbst.
+  ``` Manchmal müssen wir die Instanz selbst zurück geben oder direkt darauf zugreifen können. Dafür kann `this` verwenden werden. Dabei ist `this` immer die aktuelle Instanz selbst.
 2. ```java
-class DNA {
-  // Attribut was wir setzen wollen.
-  private String bases;
+  class DNA {
+    // Attribut was wir setzen wollen.
+    private String bases;
 
-  public DNA(String bases) {
-    // Hilfe! Attribut und Parameter haben den selben Namen.
-    this.bases = bases;
+    public DNA(String bases) {
+      // Hilfe! Attribut und Parameter haben den selben Namen.
+      this.bases = bases;
+    }
   }
-}
-``` Wenn ein Attribut und ein Parameter den selben Namen haben, wird immer der Parameter bevorzugt. Um trotzdem das Attribut zu referenzieren, können wir wie im Fall 1. erwähnt `this` nutzen, um dann auf das Attribut zuzugreifen.
+  ``` Wenn ein Attribut und ein Parameter den selben Namen haben, wird immer der Parameter bevorzugt. Um trotzdem das Attribut zu referenzieren, können wir wie im Fall 1. erwähnt `this` nutzen, um dann auf das Attribut zuzugreifen.
 3. ```java
-class DNA {
-  public DNA(String bases) { ... }
+  class DNA {
+    public DNA(String bases) { ... }
 
-  public DNA() {
-    // Referenzieren einen anderen Konstruktor.
-    this("guanine");
+    public DNA() {
+      // Referenzieren einen anderen Konstruktor.
+      this("guanine");
+    }
   }
-}
-``` Wenn wir eine Methode schreiben, welche von einer anderen abhängig ist, verwenden in der Regel einfach nur den Namen. Wenn wir einen Konstruktor in einem anderen Konstruktor mit `new` aufrufen würden, erstellen wir allerdings direkt eine neue Instanz, anstatt die Methode zu verwenden. Um trotzdem auf diese zugreifen zu können, verwenden wir hier `this`.
+  ``` Wenn wir eine Methode schreiben, welche von einer anderen abhängig ist, verwenden in der Regel einfach nur den Namen. Wenn wir einen Konstruktor in einem anderen Konstruktor mit `new` aufrufen würden, erstellen wir allerdings direkt eine neue Instanz, anstatt die Methode zu verwenden. Um trotzdem auf diese zugreifen zu können, verwenden wir hier `this`.

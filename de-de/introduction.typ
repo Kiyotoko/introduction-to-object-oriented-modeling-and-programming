@@ -24,7 +24,7 @@ In diesem Skript werden Begriffe, Zusatzwissen, Beispiele als auch Aufgaben zum 
 
 #task("Aufgabe")[
   Eine Aufgabe, in der Sie Ihr Wissen testen und selbst programmieren können. Die Lösungen dazu befinden sich auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml", "Codeberg").
-    
+
   Die Aufgaben sind vollkommen freiwillig und unabhängig vom Praktikum. Direkt unter den Aufgaben gibt es einen direktlink zu den Lösungen, um diese schneller zu finden. Bitte versuchen Sie dennoch, erst die Aufgaben zu Lösen und erst dann mit der Lösung zu vergleichen. #solution("https://codeberg.org/karlz/introduction-to-oop-and-uml")[Lösung]
 ]
 

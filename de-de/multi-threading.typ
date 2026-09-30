@@ -4,7 +4,7 @@
 
 Ein Thread ist ein Strang von Anweisungen in einem Programm. Ein Thread nimmt eine Anweisung, führt diese aus und geht dann zur nächsten Anweisung.
 
-Bisher haben wir immer nur Programme mit einem einzelnen Thread betrachtet. Jedoch können Programme beliebig viele Threads haben. Dies ist unter anderem Notwendig, wenn wir zwei Aufgaben gleichzeitig ausführen wollen. 
+Bisher haben wir immer nur Programme mit einem einzelnen Thread betrachtet. Jedoch können Programme beliebig viele Threads haben. Dies ist unter anderem Notwendig, wenn wir zwei Aufgaben gleichzeitig ausführen wollen.
 
 == Locking
 
@@ -35,7 +35,7 @@ Angenommen wir haben das folgende Problem: Wir starten zwei Threads, die beide e
 ```java
 class Main {
     static int number = 0;
-    
+
     public static void main(String[] args) {
         Runnable exec = () -> {
             for (int i = 0; i < 10000; i++) number++;
