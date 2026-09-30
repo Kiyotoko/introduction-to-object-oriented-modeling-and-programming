@@ -167,6 +167,16 @@ jshell> for (int i = 1; i <= 5; i += 1) {
 1, 4, 9, 16, 25,
 ```
 
+#complementary("Print mit Formatierung")[
+  Mit ```java System.out.println(...)``` kann man etwas auf der Konsole ausgeben und danach eine neue Zeile beginnen. Daneben gibt aber auch ```java System.out.print``` und ```java System.out.printf```. Mit `print` kann man etwas ausgeben, ohne eine neue Zeile auszugeben. Zusätzlich erlaubt `printf` es, einen Formatierungs-String mit anzugeben. Dabei ist ein Formatierungs-String eine Zeichenkette mit verschieden Regeln, wie die danach folgenden Objekte dargestellt werden sollen. Dabei ist `%s` für Strings, `%f` für Fließkommazahlen, `%d` für Ganzzahlen und `%n` für eine neue Zeile. Dazwischen können beliebig viele reguläre Zeichen stehen, welche dann normal dargestellt werden. Es ist ebenfalls möglich, beliebig viele Objekte auf einmal darzustellen:
+
+  ```java
+  jshell> { int a = 2; int b = 3;
+     ...>   System.out.printf("%d + %d = %d%n", a, b, a+b); } 
+  2 + 3 = 5 
+  ```
+]
+
 Alternativ kann man erweiterte For-Schleifen verwenden, um über eine Folge von Elementen zu iterieren.
 
 ```java
