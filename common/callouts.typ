@@ -83,10 +83,17 @@
   ),
 )
 
-#let solution(url, content) = place(bottom + right, float: true, box(
-  width: 100pt,
-  callout(rgb(129, 105, 199), "", link(url, [
-    #text(rgb(129, 105, 199), content)
-    #emoji.ballot.check
-  ])),
+#let solution(url, content) = place(bottom + right, dx: 4pt, dy: 10pt, float: false, box(
+  fill: rgb(140, 175, 191).lighten(50%),
+  outset: 4pt,
+  radius: (
+    top-left: 6pt,
+    bottom-right: 6pt
+  ),
+  stroke: 1pt + rgb(140, 175, 191).darken(30%),
+  stack(dir: ltr,
+    spacing: 2pt,
+    link(url, content),
+    emoji.ballot.check
+  ),
 ))

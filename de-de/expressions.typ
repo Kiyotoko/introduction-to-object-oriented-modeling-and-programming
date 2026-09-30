@@ -168,4 +168,6 @@ $12 ==> "Wahr"
   jshell> !(2 + 2 == 5) && (1 / 0 == 0)
   jshell> !(2 + 2 < 5) && (1 / 0 == 0) ? "B" : "A"
   ```
+
+  #solution("https://codeberg.org/karlz/introduction-to-oop-and-uml/src/branch/master/solution/evaluation-of-expressions.md")[Lösung]
 ]
