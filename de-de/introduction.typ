@@ -22,10 +22,11 @@ In diesem Skript werden Begriffe, Zusatzwissen, Beispiele als auch Aufgaben zum 
   "Ein Beispiel, welches auf bestimmte Grenzfälle oder häufige Fehler eingeht.",
 )
 
-#task(
-  "Aufgabe",
-  [Eine Aufgabe, in der Sie Ihr Wissen testen und selbst programmieren können. Die Lösungen dazu befinden sich auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml", "Codeberg").],
-)
+#task("Aufgabe")[
+  Eine Aufgabe, in der Sie Ihr Wissen testen und selbst programmieren können. Die Lösungen dazu befinden sich auf #link("https://codeberg.org/karlz/introduction-to-oop-and-uml", "Codeberg").
+    
+  Die Aufgaben sind vollkommen freiwillig und unabhängig vom Praktikum. Direkt unter den Aufgaben gibt es einen direktlink zu den Lösungen, um diese schneller zu finden. Bitte versuchen Sie dennoch, erst die Aufgaben zu Lösen und erst dann mit der Lösung zu vergleichen. #solution("https://codeberg.org/karlz/introduction-to-oop-and-uml")[Lösung]
+]
 
 Darüber hinaus befassen wir uns immer wieder mit konkreten Codebeispielen. Dabei wird nicht nur gezeigt, wie man etwas in Java schreibt, sondern auch, was man nicht machen sollte und welche Fehler dabei entstehen können. Daher werden alle Beispiele, die ein Problem aufweisen, oben an der Seite ein Symbol haben:
 
