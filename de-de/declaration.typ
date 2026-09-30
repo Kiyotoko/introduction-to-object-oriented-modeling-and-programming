@@ -40,19 +40,10 @@ Hier wurde `b` kein Wert bei der Deklaration zugewiesen. Das Lesen einer nicht i
   ```
 ]
 
-
-Bei Attributen und Array-Elementen wird der Standardwert genutzt. Bei Zahlen ist dies `0` bzw. `0.0` für Gleitkommazahlen, bei Booleans `false` und bei Objekten `null`.
-
-```java
-class Example {
-  int a; // Automatisch 0
-}
-```
-
 Deklaration und später auch Anweisungen werden mit einem Semikolon (`;`) beendet. Das Semikolon markiert das Ende vieler Anweisungen in Java. Die Anzahl von Leerzeichen, Tabs oder Zeilenumbrüchen zwischen den Bestandteilen einer Anweisung ist für Java nicht relevant.
 
 #task("Typen & Variablen")[
-  1. Welche Typen haben die folgenden Ausdrücke?
+  1. Welche Typen haben die folgenden Ausdrücke? Bonus: Welchen Wert haben die einzelnen Ausdrücke?
     ```java
     jshell> 1 + 2
     jshell> 1f + (byte) 2
