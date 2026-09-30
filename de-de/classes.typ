@@ -187,3 +187,42 @@ Attribute, Methoden und Klassen haben einen Zugriffsmodifikator. Der Modifikator
     ```java public```, x, x, x, x,
   )
 }
+
+#task("Klassen Chaos")[
+  1. Erweitere die Klasse `Student` aus dem Anfang des Kapitels um einen Konstruktor.
+
+    Wähle geeignete Zugriffsmodifikatoren für die Attribute, sodass diese nicht von außerhalb der Klasse gelesen oder verändert werden können.
+
+    Erstelle außerdem die Methoden `getName()` und `getCampusCard()`, welche jeweils den Wert des entsprechenden Attributs zurückgeben. Wähle für die Methoden geeignete Zugriffsmodifikatoren, sodass sie auch von Klassen aus anderen Paketen aufgerufen werden können.
+
+    Beispiel:
+    ```java
+
+    Student alice = new Student("Alice", 3727001);
+    System.out.println(alice.getName()); // Alice
+    System.out.println(alice.getCampusCard()); // 3727001
+    ```
+
+  2. Erstelle eine Klasse `BankAccount`, die einen Kontostand verwaltet.
+
+    Die Klasse soll einen Konstruktor besitzen, mit dem ein Startguthaben festgelegt werden kann. Außerdem soll sie die Methode transfer(BankAccount, float) anbieten. Mit dieser Methode kann ein Betrag von einem Konto auf ein anderes überwiesen werden.
+
+    Eine Überweisung soll nur durchgeführt werden, wenn das Konto über ausreichend Guthaben verfügt. Andernfalls sollen sich die Kontostände beider Konten nicht verändern.
+
+    Überlege selbst, welche Zugriffsmodifikatoren für die Attribute und Methoden sinnvoll sind.
+
+    Beispiel:
+    ```java
+    BankAccount a = new BankAccount(100);
+    BankAccount b = new BankAccount(0);
+    a.transfer(b, 200);
+    System.out.println(a); // 100, nichts wurde überwiesen
+    a.transfer(b, 60);
+    System.out.println(a); // 40
+    System.out.println(b); // 60
+    ```
+
+  #solution(
+    "https://codeberg.org/karlz/introduction-to-oop-and-uml/src/branch/master/solution/class-chaos.md",
+  )[Lösung]
+]
