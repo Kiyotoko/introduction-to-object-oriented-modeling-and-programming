@@ -177,3 +177,28 @@ jshell> for (int i : new int[]{ 1, 8, 7 }) {
 ```
 
 Wie genau die hier dargestellten Arrays oder später auch die Java Collections funktionieren, erfahren Sie in einem späteren Kapitel.
+
+#task("State und Statements")[
+  1. Schreibe ein Programm, welches die #link("https://en.wikipedia.org/wiki/Factorial")[Fakultät $n!$] für eine Zahl $n$ ausgibt. Ausgabe für $n = 5$: $120$
+  2. Schreibe ein Programm, welches das folgende Muster ausgibt. Ausgabe für $n = 4$:
+    ```
+       *
+      * *
+     * * *
+    * * * *
+     * * *
+      * *
+       *
+    ```
+  3. Schreibe ein Programm, welches das folgende Muster ausgibt. Ausgabe für $n = 5$:
+    ```
+         1
+        1 1
+       1 2 1
+      1 3 3 1
+     1 4 6 4 1
+    1 5 10 10 5 1
+    ```
+
+    Hinweis: Ein Zahl entspricht immer der Summe der beiden oberen Zahlen. Siehe auch #link("https://en.wikipedia.org/wiki/Pascal%27s_triangle")[Pascalsches Dreieck].
+]
