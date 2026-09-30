@@ -70,4 +70,8 @@ Deklaration und später auch Anweisungen werden mit einem Semikolon (`;`) beende
         3 dot n + 1 & "falls" n "ungerade ist"
       )
     $
+
+  #solution(
+    "https://codeberg.org/karlz/introduction-to-oop-and-uml/src/branch/master/solution/types-and-variables.md",
+  )[Lösung]
 ]

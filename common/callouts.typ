@@ -83,17 +83,19 @@
   ),
 )
 
-#let solution(url, content) = place(bottom + right, dx: 4pt, dy: 10pt, float: false, box(
-  fill: rgb(140, 175, 191).lighten(50%),
-  outset: 4pt,
-  radius: (
-    top-left: 6pt,
-    bottom-right: 6pt
+#let solution(url, content) = place(
+  bottom + right,
+  dx: 4pt,
+  dy: 10pt,
+  float: false,
+  box(
+    fill: rgb(140, 175, 191).lighten(50%),
+    outset: 4pt,
+    radius: (
+      top-left: 6pt,
+      bottom-right: 6pt,
+    ),
+    stroke: 1pt + rgb(140, 175, 191).darken(30%),
+    stack(dir: ltr, spacing: 2pt, link(url, content), emoji.ballot.check),
   ),
-  stroke: 1pt + rgb(140, 175, 191).darken(30%),
-  stack(dir: ltr,
-    spacing: 2pt,
-    link(url, content),
-    emoji.ballot.check
-  ),
-))
+)
