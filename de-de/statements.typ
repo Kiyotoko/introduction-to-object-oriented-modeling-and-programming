@@ -172,8 +172,8 @@ jshell> for (int i = 1; i <= 5; i += 1) {
 
   ```java
   jshell> { int a = 2; int b = 3;
-     ...>   System.out.printf("%d + %d = %d%n", a, b, a+b); } 
-  2 + 3 = 5 
+     ...>   System.out.printf("%d + %d = %d%n", a, b, a+b); }
+  2 + 3 = 5
   ```
 ]
 

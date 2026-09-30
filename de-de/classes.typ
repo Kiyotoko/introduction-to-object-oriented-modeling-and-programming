@@ -3,11 +3,10 @@
 = Klassen
 
 #definition("Klasse")[
-  Eine Klasse ist ein synthetisches Konstrukt, welches genutzt wird, um Objekte zu erstellen. Objekte der selben Klasse teilen sich die gleiche Art für Zustand (Variablen) und Verhalten (Methoden).
+  Eine Klasse definiert einen Typ und beschreibt, welche Daten und welches Verhalten Objekte dieses Typs besitzen. Objekte derselben Klasse besitzen dieselbe Struktur: Sie können dieselben Attribute und Methoden haben. Die konkreten Werte ihrer Attribute können sich jedoch unterscheiden.
 ]
 
-Um zu verstehen, was überhaupt Klassen sind und warum man diese überhaupt verwenden möchte, hier ein Beispiel:
-Betrachten wir die Klasse ```java Student```. Alle Studenten haben die Werte Name und Matrikelnummer. Zusätzlich haben alle Studenten das Verhalten ```java lernen```.
+Um zu verstehen, was Klassen sind und warum man sie verwendet, betrachten wir die Klasse ```java Student```. Jeder Student besitzt einen Namen und eine Matrikelnummer. Zusätzlich können Studenten lernen.
 Zwei konkrete Studenten (Objekte) sind Alice und Bob. Alice hat die Matrikelnummer 3727001 und Bob die Nummer 3727002.
 
 Eine neue Klasse kann mit dem Schlüsselwort ```java class``` deklariert werden. Hier ist eine konkrete Implementierung für die Klasse ```java Student```.
@@ -33,106 +32,115 @@ class Student {
 
 == Klassen vs. Instanzen
 
-Eine Klasse bezeichnet die Struktur aus Attributen und Methoden.
+Eine Klasse beschreibt unter anderem die Attribute und Methoden, die ihre Instanzen besitzen.
 
-Eine Instanz ist ein konkretes Objekt mit festen Werten für alle Attribute. Die Werte von Attribute für zwei verschiedene Instanzen sind komplett voneinander Unabhängig.
-Alle Instanzen der selben Klasse haben auch die selbe Struktur, nicht zwingend aber auch die selben Werte.
+Eine Instanz ist ein konkretes Objekt einer Klasse. Sie besitzt ihren eigenen Zustand, der durch die Werte ihrer Instanzattribute bestimmt wird. Die Werte der Attribute zweier verschiedener Instanzen sind voneinander unabhängig.
+Alle Instanzen derselben Klasse haben dieselbe Struktur, aber nicht zwingend dieselben Werte.
 
-Im Beispiel oben heißt die Klasse Student. Diese definiert alle möglichen Attribute und Methoden. Sie legt keine Werte fest. In der Main-Methode werden die beiden Instanzen Alice und Bob deklariert. Diese legen jeweils den Namen und die Nummer der Studenten fest. Die konkreten Werte sind jeweils von den anderen Instanzen unabhängig. Da beide zur selben Klasse gehören, haben sowohl Bob als auch Alice die selbe Struktur. Dies bedeutet, dass beide zum Beispiel die Methode lernen haben.
+Im Beispiel oben heißt die Klasse Student. Diese definiert alle möglichen Attribute und Methoden. Sie legt keine Werte fest. In der `main`-Methode werden zwei Objekte der Klasse Student erstellt und den Variablen `alice` und `bob` zugewiesen. Beim Erzeugen werden jeweils der Name und die Matrikelnummer über den Konstruktor festgelegt. Die konkreten Werte sind jeweils von den anderen Instanzen unabhängig. Da beide zur selben Klasse gehören, haben sowohl Bob als auch Alice dieselbe Struktur. Dies bedeutet, dass beide zum Beispiel die Methode lernen haben.
+
+Die Variable `alice` enthält nicht das Objekt selbst, sondern eine Referenz auf das erzeugte Objekt. Der Ausdruck `new Student(...)` erzeugt ein neues Objekt und liefert eine Referenz auf dieses Objekt zurück.
+
+#complementary("Referenzen")[
+  Referenzen ermöglichen den Zugriff auf Objekte. Eine Referenz wie `alice` enthält nicht das Objekt selbst, sondern verweist auf ein Objekt.
+
+  #align(center)[```
+  alice ──────► Student-Objekt
+                 ► name = "Alice"
+                 ► campusCard = 3727001
+  ```]
+
+  Es kann mehrere Referenzen zum selben Objekt geben. Wenn dann ein Objekt geändert wird, betrifft dies auch alle anderen Objekte.
+
+  ```
+  Student alice = new Student("Alice", 3727001);
+  Student alex = alice;
+  alice.name = "Alex";
+  System.out.println(alex); // Alex
+  ```
+]
 
 == Attribute
 
-Ein Attribut ist eine Variable, welche zu einer Instanz gehört. Alle Klassen haben die gleichen Attribute. Oben hat die Klasse `Student` genau zwei Attribute angelegt: Name und Campus Card. Der Wert eines Attributes wird erst bei der Initialisierung mit `new` festgelegt. Jedes Attribut muss einen Typen und Namen haben.
-Zusätzlich kann ein Initialwert zugewiesen werden. Genau wie bei Variable haben auch alle Attribute einen Standard-Wert, bis dieser initialisiert wird. Für Zahlen ist dieser 0, für Wahrheitswerte `false` und für Objekte `null`.
-Anders als Variablen gehören Attribute zur Instanz und können einen Sichtbarkeit-Modifikator haben. Was genau ein solcher Modifikator macht und welche es überhaupt gibt, wird in einem späteren Kapitel erklärt.
+Ein Attribut (engl: _field_) ist eine Variable, die innerhalb einer Klasse deklariert wird. Ein Instanzattribut gehört zu einem konkreten Objekt. Deshalb besitzt jedes Objekt seinen eigenen Wert für dieses Attribut. Oben hat die Klasse `Student` genau zwei Attribute angelegt: Name und Campus Card.
+
+Wenn ein Instanzattribut nicht explizit initialisiert wird, erhält es automatisch den Standardwert seines Typs. Numerische Typen erhalten 0, boolean erhält false und Referenztypen erhalten null. Für lokale Variablen gelten diese Standardwerte hingegen nicht.
+
+Im Gegensatz zu lokalen Variablen können Attribute mit einem Zugriffsmodifikator versehen werden. Was genau ein solcher Modifikator macht und welche es überhaupt gibt, wird in einem späteren Kapitel erklärt.
+
+== Das Schlüsselwort `static`
+
+Es gibt außerdem `static`-Attribute und -Methoden. Diese gehören nicht zu einer einzelnen Instanz, sondern sind an die Klasse gebunden. Eine `static`-Methode kann ohne eine Instanz aufgerufen werden. Deshalb kann sie nicht direkt auf Instanzattribute oder Instanzmethoden zugreifen: Es gibt keine aktuelle Instanz, auf die sich ein solcher Zugriff beziehen könnte. Über eine Referenz auf ein Objekt ist der Zugriff allerdings möglich. Die `main`-Methode ist `static`, weil sie vom Java-Laufzeitsystem aufgerufen wird, ohne zuvor eine Instanz der Klasse zu erzeugen.
 
 ```java
-public class Katze {
+public class Cat {
       // vvvvvv Datentyp
-  public String besitzer;
-//^^^^^^        ^^^^^^^^ Modifikator und Name
-  boolean flauschig = true;
-                 // ^^^^^^ Initialwert
-
+  public String owner;
+//^^^^^^        ^^^^^ Modifikator und Name
+  boolean fluffy = true;
+              // ^^^^^^ Explizit initialisiert
 
   public static void main(String[] args) {
-    Katze cheshire = new Katze();
-    System.out.println(cheshire.besitzer); // null
-    cheshire.besitzer = "Alice";
-    System.out.println(cheshire.besitzer); // Alice
-    System.out.println(cheshire.flauschig); // true
+    Cat cheshire = new Cat();
+    System.out.println(cheshire.owner); // null
+    cheshire.owner = "Alice";
+    System.out.println(cheshire.owner); // Alice
+    System.out.println(cheshire.fluffy); // true
   }
 }
 ```
 
 == Methoden
 
-Um Klassen ein Verhalten zu geben brauchen wir Methoden.
-Ein Methode hat einen Namen, eine Liste von Parametern sowie einen Rückgabetyp. Zusätzlich kann es einen einzigen Sichtbarkeitsmodifikator haben sowie eine beliebige Anzahl an verschiedenen Modifikatoren, die noch in den den nachfolgenden Kaptiteln eingeführt werden. Im nachfolgenden Beispeil ist die Methode Maximum dargestellt mit allen beschrifteten Bestandteilen:
+Um Klassen ein Verhalten zu geben, brauchen wir Methoden.
+Eine Methode hat einen Namen, eine Liste von Parametern sowie einen Rückgabetyp. Zusätzlich kann sie einen einzigen Zugriffsmodifikator haben sowie eine beliebige Anzahl weiterer Modifikatoren, die in den nachfolgenden Kapiteln eingeführt werden. Im nachfolgenden Beispiel ist die Methode ```java max``` dargestellt mit allen beschrifteten Bestandteilen:
 
 ```java
-    // vvv          vvvvvvvvvvv Rückgabetyp und Parameter
-public int maximum(int a, int b) {
-//^^^^     ^^^^^^^ Modifikator und Name
-
+public int max(int a, int b) {
+// ^^^ Zugriffsmodifikator
+//     ^^^ Rückgabetyp
+//         ^^^ Name
+//             ^^^^^^^^^^^^ Parameter
   // List von Anweisungen
   return a > b ? a : b;
 }
 ```
 
-Methoden können einen Wert berechnen und diesen zurückgeben. Der Typ dieses Wertes ist der Rückgabetyp. Die Schritte zur Berechnung besteht aus einer Liste von Anweisungen, die im Körper (_body_) der Methode definiert werden.
+Methoden können einen Wert berechnen und diesen zurückgeben. Der Typ dieses Wertes ist der Rückgabetyp. Die Schritte zur Berechnung bestehen aus einer Liste von Anweisungen. Diese stehen im Körper (_body_) der Methode.
 
-Der Name, die Liste der Parametern und der Rückgabetyp bilden zusammen die Signatur. Die Signatur beschreibt vollständig eine Methode.
+Der Name einer Methode und die Typen ihrer Parameter bilden zusammen ihre Signatur. Die Signatur identifiziert eine Methode anhand ihres Namens und ihrer Parametertypen. Es können nicht zwei Methoden in einer Klasse mit derselben Signatur existieren. Allerdings ist es zum Beispiel möglich, zwei Methoden mit demselben Namen aber anderen Parametern zu haben. Der Rückgabetyp und der Zugriffsmodifikator gehört nicht zur Signatur.
+
+Die Methode `max` hat hier Beispielsweise die Signatur ```java max(int, int)```.
 
 == Konstruktoren
 
-Ein Konstruktor ist eine Methode, die ein Objekt instanziiert. Der Name des Konstruktor ist immer mit dem Namen der Klasse identisch und hat keinen Rückgabetyp.
+Ein Konstruktor ist in Java keine Methode. Ein Konstruktor wird beim Erzeugen eines Objekts mit ```java new``` aufgerufen und initialisiert das neue Objekt.
 
 ```java
-public class Katze {
-  private String besitzer;
+public class Cat {
+  private String owner;
 
-  public Katze(String besitzer) {
-    this.besitzer = besitzer;
-  }
-
-  public Katze() {
-    this.besitzer = "Alice";
+  public Cat(String owner) {
+    this.owner = owner;
   }
 
   public static void main(String[] args) {
-    Katze cheshire = new Katze();
-    System.out.println(cheshire.besitzer); // Alice
-    Katze donut = new Katze("Carl");
-    System.out.println(donut.besitzer); // Carl
+    Cat donut = new Cat("Carl");
+    System.out.println(donut.owner); // Carl
+    // Da es keinen Default-Konstruktor mehr gibt, funktioniert dies nicht mehr.
+    // Versuchen Sie, die nachfolgenden Zeile auszukommentieren.
+    // Cat cheshire = new Cat();
   }
 }
 ```
 
-Wenn für eine Klasse kein eigener Konstruktor deklariert wird, gibt es immer einen Standard-Konstrukt, welcher keine Argumente nimmt und keine Attribute initialisiert. Im ersten Beispiel in der Klasse Student wurde ein Konstruktor deklariert, welcher die beiden Attribute Name und Campus Card initialisiert. Im zweiten Beispiel in der Klasse Katze wird kein Konstruktor deklariert. Somit gibt es dort den Standard-Konstrukt und es kann eine neue Instanz ohne Argumente erstellt werden.
-
-== Sichtbarkeit-Modifikatoren
-
-Attribute, Methoden und Klassen haben einen Sichtbarkeits-Modifikator. Der Modifikator steht ganz am Anfang der Deklaration und legt fest, von wo aus im Projekt man auf diese Deklaration zugreifen kann.
-
-#{
-  let x = align(center, [x])
-  show table.cell.where(y: 0): strong
-  table(
-    columns: { for _ in range(5) { (auto,) } },
-    [Modifikator], [Selbe Klasse], [Selbes Paket], [Erbt aus Klasse], [Überall],
-    ```java private```, x, [], [], [],
-    [Kein Modifikator], x, x, [], [],
-    ```java protected```, x, x, x, [],
-    ```java public```, x, x, x, x,
-  )
-}
+Wenn eine Klasse keinen Konstruktor deklariert, stellt der Compiler implizit einen parameterlosen Default-Konstruktor bereit. Dieser wird als _Default-Konstruktor_ bezeichnet. Die Instanzattribute erhalten dabei ihre normalen Initialwerte beziehungsweise Standardwerte. Im ersten Beispiel in der Klasse Student wurde ein Konstruktor deklariert, welcher die beiden Attribute `name` und `campusCard` initialisiert. Im zweiten Beispiel in der Klasse ```java Cat``` wird kein Konstruktor deklariert. Somit gibt es dort den Default-Konstrukt und es kann eine neue Instanz ohne Argumente erstellt werden.
 
 == Das Schlüsselwort `this`
 
-Auf andere Instanzen oder Variablen kan mit Namen zugegriffen werden. Wenn man auf die eigene Instanz zugreifen möchte, kann man dafür `this` verwenden.
+Innerhalb einer Instanzmethode kann mit this auf die aktuelle Instanz zugegriffen werden.
 
-Doch wann benötigt man überhaupt die eigene Instanz, wenn man auch einfach direkt über den Namen des Attributes oder der Methode verwenden kann? Dafür gibt es in der Regel drei mögliche Anwendungsfälle:
+Doch wann benötigt man überhaupt die aktuelle Instanz, wenn man auch einfach direkt über den Namen des Attributes oder der Methode verwenden kann? Dafür gibt es in der Regel drei mögliche Anwendungsfälle:
 1. ```java
   class DNA {
     public DNA clone() {
@@ -140,7 +148,7 @@ Doch wann benötigt man überhaupt die eigene Instanz, wenn man auch einfach dir
       return this;
     }
   }
-  ``` Manchmal müssen wir die Instanz selbst zurück geben oder direkt darauf zugreifen können. Dafür kann `this` verwenden werden. Dabei ist `this` immer die aktuelle Instanz selbst.
+  ``` Manchmal müssen wir die Instanz selbst zurück geben oder direkt darauf zugreifen können. Dafür kann `this` verwenden werden. Innerhalb einer Instanzmethode bezeichnet `this` die aktuelle Instanz.
 2. ```java
   class DNA {
     // Attribut was wir setzen wollen.
@@ -151,7 +159,7 @@ Doch wann benötigt man überhaupt die eigene Instanz, wenn man auch einfach dir
       this.bases = bases;
     }
   }
-  ``` Wenn ein Attribut und ein Parameter den selben Namen haben, wird immer der Parameter bevorzugt. Um trotzdem das Attribut zu referenzieren, können wir wie im Fall 1. erwähnt `this` nutzen, um dann auf das Attribut zuzugreifen.
+  ``` Wenn ein Parameter denselben Namen wie ein Attribut hat, wird innerhalb des betreffenden Gültigkeitsbereichs der Parameter verwendet. Um trotzdem das Attribut zu referenzieren, können wir wie im Fall 1. erwähnt `this` nutzen, um dann auf das Attribut zuzugreifen.
 3. ```java
   class DNA {
     public DNA(String bases) { ... }
@@ -161,4 +169,21 @@ Doch wann benötigt man überhaupt die eigene Instanz, wenn man auch einfach dir
       this("guanine");
     }
   }
-  ``` Wenn wir eine Methode schreiben, welche von einer anderen abhängig ist, verwenden in der Regel einfach nur den Namen. Wenn wir einen Konstruktor in einem anderen Konstruktor mit `new` aufrufen würden, erstellen wir allerdings direkt eine neue Instanz, anstatt die Methode zu verwenden. Um trotzdem auf diese zugreifen zu können, verwenden wir hier `this`.
+  ``` Mit ```java this(...)``` kann ein Konstruktor einen anderen Konstruktor derselben Klasse aufrufen. Dadurch kann gemeinsame Initialisierungslogik an einer Stelle definiert werden. Wichtig: Ein Aufruf von ```java this(...)``` muss die erste Anweisung eines Konstruktors sein.
+
+== Zugriffsmodifikatoren
+
+Attribute, Methoden und Klassen haben einen Zugriffsmodifikator. Der Modifikator steht ganz am Anfang der Deklaration und legt fest, von wo aus im Projekt man auf diese Deklaration zugreifen kann.
+
+#{
+  let x = align(center, [x])
+  show table.cell.where(y: 0): strong
+  table(
+    columns: { for _ in range(5) { (auto,) } },
+    [Modifikator], [Selbe Klasse], [Selbes Paket], [Subklasse#footnote[¹ ```java protected``` ist für Subklassen auch über Paketgrenzen hinweg zugänglich, allerdings gelten dabei zusätzliche Einschränkungen.]], [Anderes\ Paket],
+    ```java private```, x, [], [], [],
+    [Kein Modifikator\ (package-private)], x, x, [], [],
+    ```java protected```, x, x, x, [],
+    ```java public```, x, x, x, x,
+  )
+}
