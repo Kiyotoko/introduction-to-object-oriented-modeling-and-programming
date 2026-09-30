@@ -1,21 +1,25 @@
+#import "../common/callouts.typ": *
+
 = I/O Streams
 
-Damit ein Programm überhaupt eine Eingabe lesen oder eine Ausgabe schreiben kann, gibt es Streams. Ein Stream kann entweder vom Terminal, von einer Datei oder einem Netzwerk Socket lesen und schreiben. In der Vorlesung werden wir uns primär mit dem Schrieben und Lesen des Terminals beschäftigen.
+Damit ein Programm Eingaben lesen oder Ausgaben schreiben kann, benötigt es sogenannte Streams. Ein Stream stellt einen Datenfluss zwischen einem Programm und einer Datenquelle bzw. einem Datenziel dar. Eine Datenquelle kann beispielsweise das Terminal, eine Datei oder ein Netzwerk-Socket sein.
 
-== Standard Output Stream
+In dieser Vorlesung betrachten wir zunächst die Standard-Streams eines Java-Programms. Java stellt dafür drei Standard-Streams bereit:
 
-Um in das Terminal zu schreiben, gibt es zwei Output Streams. Diese hatten wir bereits verwendet, ohne sie genauer zu erklären. In der Regel wird der Output Stream `out` für die reguläre Ausgabe verwendet und `err` für Fehler.
+- `System.in` für die Standardeingabe
+- `System.out` für die Standardausgabe
+- `System.err` für die Standardfehlerausgabe
 
-Jeder Stream hat die beiden Methoden `write(...)` und `flush()`. Mit `write(...)` kann man Daten (Bytes) in den Stream schreiben. Allerdings ist damit nicht garantiert, dass diese Daten auch wirklich ins Terminal oder in die Datei geschrieben wurden.
+Die Standard-Streams werden beim Start eines Java-Programms automatisch bereitgestellt. Wir müssen sie daher nicht selbst öffnen. Sie sind bei interaktiven Programmen häufig mit dem Terminal verbunden, können aber beispielsweise auch auf eine Datei oder einen anderen Stream umgeleitet werden.
 
-Immer wenn wir in ein Terminal oder Datei schreiben oder lesen, müssen wir dafür das Betriebssystem anfragen (Syscall). Wenn wir zum Beispiel in eine Datei einhundert mal eine Zeile schreiben würden, müssten wir auch einhundert mal die Datei öffnen, die Zeile schreiben und dann wieder die Datei schließen. Dies wäre sehr langsam.
+== Standard Output
 
-Um dieses Problem zu lösen, verwenden Output Streams Buffer. Ein Buffer ist ein Bereich im Arbeitsspeicher (z.B. RAM), auf dem die Daten zwischengespeichert werden. Wenn wir hier einhundert mal die Methode `write` aufrufen, wird zuerst in den Buffer geschrieben. Wenn zwischendurch der Buffer voll ist, wird alles in die Datei geschrieben und der Buffer gelehrt. Um am Ende sicherzugehen, dass alles aus dem Buffer auch wirklich geschrieben wurde, können wir nun die Methode `flush` verwenden. Diese garantiert, dass am Ende der Buffer gelehrt wird und alles auch geschrieben wird.
+Um Daten in das Terminal zu schreiben, stehen uns `System.out` und `System.err` zur Verfügung. Beide haben wir bereits verwendet, ohne die zugrunde liegenden Streams genauer zu betrachten.
 
-Die Streams `out` und `err` haben zusätzlich noch die Methoden `print(...)` und `println(...)`. Die Methode `print` ruft am Ende immer automatisch `flush` auf. Mit `println` kann man zusätzlich einen Zeilenumbruch einfügen.
+`System.out` wird normalerweise für die reguläre Ausgabe verwendet. `System.err` ist für Fehlermeldungen und andere diagnostische Ausgaben vorgesehen. Zum Beispiel:
 
 ```java
-int age = ...;
+int age = 42;
 if (age < 0) {
   System.err.println("age should be positive");
 } else {
@@ -23,9 +27,54 @@ if (age < 0) {
 }
 ```
 
+Obwohl beide Streams normalerweise im selben Terminal sichtbar sind, handelt es sich um zwei unterschiedliche Ausgabekanäle. Das Betriebssystem kann Standardausgabe und Standardfehler beispielsweise getrennt umleiten.
+
+
+`System.out` und `System.err` sind Instanzen der Klasse `PrintStream`. PrintStream stellt unter anderem die Methoden `print(...)` und `println(...)` bereit. Diese Klasse stellt komfortable Methoden für die Ausgabe von Text und anderen Datentypen bereit.
+
+Wie bereits aus vorherigen Kapitel bekannt, verwenden  wir besonders häufig:
+- ```java print(...)``` gibt einen Wert aus, ohne automatisch einen Zeilenumbruch anzufügen.
+- ```java println(...)``` gibt einen Wert aus und fügt anschließend einen Zeilenumbruch an.
+
+Zum Beispiel:
+
+```java
+System.out.print("Hello ");
+System.out.print("World");
+// Ergibt: Hello World
+```
+
+Dagegen:
+
+```java
+System.out.println("Hello");
+System.out.println("World");
+// Ergibt:
+// Hello
+// World
+```
+
+#complementary("Write und Flush")[
+  Ein Output Stream stellt unter anderem die Methoden `write(...)` und `flush()` bereit. Mit `write(...)` können Daten in den Stream geschrieben werden. Bei einem byteorientierten Stream geschieht dies zunächst in Form einzelner Bytes.
+
+  Das Schreiben in einen Stream bedeutet nicht zwangsläufig, dass die Daten sofort am endgültigen Ziel ankommen. Bei vielen Streams werden Daten zunächst in einem Puffer zwischengespeichert. Dadurch können mehrere Schreibvorgänge gesammelt und gemeinsam an das Ziel weitergegeben werden, wodurch die Anzahl notwendiger System Calls reduziert wird.
+
+  Die Methode `flush()` fordert den Stream dazu auf, ausstehende Daten weiterzugeben. Bei einem gepufferten Stream werden dabei insbesondere die aktuell im Puffer befindlichen Daten an das Ziel weitergeleitet. Beispielsweise:
+
+  ```java
+  System.out.write("Hello".getBytes());
+  System.out.flush();
+  ```
+
+  `flush()` ist vor allem dann relevant, wenn Daten sofort sichtbar bzw. weitergegeben werden sollen, obwohl der Puffer noch nicht voll ist. Es garantiert jedoch nicht, dass die Daten bereits dauerhaft auf einem Speichermedium gespeichert wurden.
+]
+
 == Input Stream
 
-Input Streams sind, wie der Name bereits andeutet, dafür da, um eine Eingabe zu lesen.
+Input Streams sind dafür zuständig, Daten aus einer Quelle zu lesen. Der Standard-Input-Stream eines Java-Programms ist `System.in`.
+`System.in` ist ein byteorientierter InputStream. Das direkte Lesen einzelner Bytes ist für typische Benutzereingaben allerdings eher umständlich. Deshalb verwenden wir häufig die Klasse `Scanner`, die Daten aus einem Input Stream lesen und in verschiedene Java-Datentypen umwandeln kann.
+
+Wichtig: Ein Scanner ist selbst kein Stream. Er ist eine Hilfsklasse, die einen Stream liest und die darin enthaltenen Daten interpretiert.
 
 ```java
 import java.util.Scanner;
@@ -40,3 +89,11 @@ String name = scanner.nextLine();
 System.out.print("Enter your age: ");
 int age = scanner.nextInt();
 ```
+
+Hier passiert Folgendes:
+- `System.in` stellt die Eingabe des Programms bereit.
+- `new Scanner(System.in)` erzeugt einen Scanner, der diesen Input Stream liest.
+- `nextLine()` liest Text bis zum Ende einer Zeile.
+- `nextInt()` liest das nächste Token und wandelt es in einen ```java int``` um.
+
+Der Scanner übernimmt damit einen Teil der Arbeit, die beim direkten Lesen eines Streams notwendig wäre.
