@@ -12,7 +12,7 @@ Zwei konkrete Studenten (Objekte) sind Alice und Bob. Alice hat die Matrikelnumm
 Eine neue Klasse kann mit dem Schlüsselwort ```java class``` deklariert werden. Hier ist eine konkrete Implementierung für die Klasse ```java Student```.
 
 ```java
-class Student {
+public class Student {
   String name;
   long campusCard;
 

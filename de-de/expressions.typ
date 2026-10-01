@@ -2,13 +2,13 @@
 
 = Ausdrücke
 
-Um gespeicherte Informationen verarbeiten zu können braucht es eine eindeutige Interpretation der gespeicherten Bits. Gleichzeitig soll beim Programmieren von der Hardwaredarstellung der Informationen abstrahiert werden. Dafür werden *Datentypen* definiert.
+Um gespeicherte Informationen verarbeiten zu können braucht es eine eindeutige Interpretation der gespeicherten Bits. Gleichzeitig soll beim Programmieren von der Hardwaredarstellung der Informationen abstrahiert werden. Dafür werden Datentypen definiert.
 
 #definition("Datentypen")[
   Ein Datentyp (engl. _data type_) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich.
 ]
 
-In Java sind primitive Datentypen für Zahlen, Wahrheitswerte und Zeichen definiert. Es gibt dabei verschiedene Varianten, je nachdem wie viel Speicher für einen Wert dieses Datentyps reserviert wird. Zeichenketten werden durch die Klasse `String` dargestellt.
+In Java sind primitive Datentypen für Zahlen, Wahrheitswerte und Zeichen definiert. Es gibt dabei verschiedene Varianten, je nachdem wie viel Speicher für einen Wert dieses Datentyps reserviert wird. Zeichenketten werden durch `String` dargestellt.
 Zahlen in Java sind entweder Ganzzahlen (Integers) oder Gleitkommazahlen (engl. _floating point numbers_). Alle Zahlen in Java werden mit einem Vorzeichen abgespeichert (Plus/Minus). In der folgenden Tabelle sind Javas primitiven Datentypen für Zahlen angegeben:
 
 #table(

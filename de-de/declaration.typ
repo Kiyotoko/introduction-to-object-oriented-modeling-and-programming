@@ -20,27 +20,9 @@ jshell> int a = 1;
 a ==> 1
 ```
 
-Hier wurde eine Variable `a` vom Datentyp `int` mit dem Wert `1` initialisiert. Eine Variable kann zunächst ohne Wert deklariert werden. Lokale Variablen müssen jedoch vor ihrer Verwendung einen Wert erhalten. Attribute von Objekten und statische Variablen erhalten automatisch einen Standardwert.
+Hier wurde eine Variable `a` vom Datentyp `int` mit dem Wert `1` initialisiert. Eine Variable kann zunächst ohne Wert deklariert werden.
 
-```java
-int a = 1; // Deklaration + Initialisierung
-int b; // Deklaration
-b = 2; // Zuweisung
-```
-
-Hier wurde `b` kein Wert bei der Deklaration zugewiesen. Das Lesen einer nicht initialisierten lokalen Variable ist nicht erlaubt:
-
-#compile-error()[
-  ```java
-  { int i; System.out.println(i);}
-  |  Error:
-  |  variable i might not have been initialized
-  |  { int i; System.out.println(i);}
-  |                              ^
-  ```
-]
-
-Deklaration und später auch Anweisungen werden mit einem Semikolon (`;`) beendet. Das Semikolon markiert das Ende vieler Anweisungen in Java. Die Anzahl von Leerzeichen, Tabs oder Zeilenumbrüchen zwischen den Bestandteilen einer Anweisung ist für Java nicht relevant.
+Deklaration und später auch Anweisungen (@statements) werden mit einem Semikolon (`;`) beendet. Die Anzahl von Leerzeichen, Tabs oder Zeilenumbrüchen zwischen den Bestandteilen einer Anweisung ist für Java nicht relevant.
 
 #task("Typen & Variablen")[
   1. Welche Typen haben die folgenden Ausdrücke? Bonus: Welchen Wert haben die einzelnen Ausdrücke?
