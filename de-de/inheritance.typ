@@ -57,3 +57,5 @@ Anonymous ano = new Anonymous() {
   public String toString() { ... }
 };
 ```
+
+== Vererbungen in UML

@@ -68,7 +68,7 @@ Wenn ein Instanzattribut nicht explizit initialisiert wird, erhält es automatis
 
 Im Gegensatz zu lokalen Variablen können Attribute mit einem Zugriffsmodifikator versehen werden. Was genau ein solcher Modifikator macht und welche es überhaupt gibt, wird in einem späteren Kapitel erklärt.
 
-== Das Schlüsselwort `static`
+== Der Modifikator `static`
 
 Es gibt außerdem `static`-Attribute und -Methoden. Diese gehören nicht zu einer einzelnen Instanz, sondern sind an die Klasse gebunden. Eine `static`-Methode kann ohne eine Instanz aufgerufen werden. Deshalb kann sie nicht direkt auf Instanzattribute oder Instanzmethoden zugreifen: Es gibt keine aktuelle Instanz, auf die sich ein solcher Zugriff beziehen könnte. Über eine Referenz auf ein Objekt ist der Zugriff allerdings möglich. Die `main`-Methode ist `static`, weil sie vom Java-Laufzeitsystem aufgerufen wird, ohne zuvor eine Instanz der Klasse zu erzeugen.
 
@@ -180,13 +180,67 @@ Attribute, Methoden und Klassen haben einen Zugriffsmodifikator. Der Modifikator
   show table.cell.where(y: 0): strong
   table(
     columns: { for _ in range(5) { (auto,) } },
-    [Modifikator], [Selbe Klasse], [Selbes Paket], [Subklasse#footnote[¹ ```java protected``` ist für Subklassen auch über Paketgrenzen hinweg zugänglich, allerdings gelten dabei zusätzliche Einschränkungen.]], [Anderes\ Paket],
+    [Modifikator], [Selbe Klasse], [Selbes Paket], [Subklasse], [Anderes\ Paket],
     ```java private```, x, [], [], [],
     [Kein Modifikator\ (package-private)], x, x, [], [],
     ```java protected```, x, x, x, [],
     ```java public```, x, x, x, x,
   )
 }
+
+== Klassen in UML
+
+#align(center)[
+  ```source-diagram-java
+  class Student {
+    private String name;
+    protected long campusCard;
+
+    Student(name: String, campusCard: long);
+
+    public void lernen();
+  }
+  ```
+]
+
+UML wird genutzt, um die Struktur einer Klasse graphisch darzustellen. Für Klassen müssen daher sowohl alle Attribute als auch Konstruktoren und Methoden enthalten sein. Hier ist die Klasse `Student` dargestellt.
+
+Bei Attributen wird der Name und Datentyp im Diagram abgebildet. Dabei kommt im Gegensatz zu Java der Datentyp hinter den Namen und wird mit einem Doppelpunkt (`:`) getrennt.
+
+Ähnlich dazu wird auch bei Methoden und Attributen der Name dargestellt, gefolgt von der Liste der Parameter und dem Rückgabetyp. Auch hier kommen die Datentypen nach den Namen und nicht davor.
+
+Zum Schluss werden noch die Zugriffsmodifikatoren in UML mithilfe von Symbolen dargestellt
+
+#align(center, table(
+  columns: (auto, auto, auto, auto, auto),
+  table.header(
+    strong[Modifikator], ```java private```, [Kein Modifikator\ (package-private)], ```java protected```, ```java public```
+  ),
+  strong[Symbol in UML], [`-`], [Kein Symbol (` `)], [`~`], [`+`]
+))
+
+== Modellierung von Relationen
+
+Zur Modellierung mit UML gehört nicht nur die Repräsentation der Struktur, sondern auch die Relationen untereinander.
+
+#align(center)[
+  ```source-diagram-java
+  class List {
+    private Node head;
+    private int size;
+
+    public List();
+  }
+
+  class Node {
+    private int value;
+
+    public Node();
+  }
+  ```
+]
+
+Dabei wird dargestellt, welche Attribute sich auf welche Klassen beziehen. 
 
 #task("Klassen Chaos")[
   1. Erweitere die Klasse `Student` aus dem Anfang des Kapitels um einen Konstruktor.

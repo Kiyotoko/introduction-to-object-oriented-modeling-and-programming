@@ -86,4 +86,3 @@ System.out.println(op("Hello", (l, r) -> l + ", " + r, "World")); // Gibt "Hello
     B extends A declared in method <A,B>downcast(B)
   ```
 ]
-

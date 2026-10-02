@@ -32,11 +32,12 @@
   "arrays.typ",
   "immutable.typ",
   "inheritance.typ",
+  "exceptions.typ",
+  "enums.typ",
   "generics.typ",
   "collections.typ",
   "interfaces.typ",
   "advanced-statements.typ",
-  "exceptions.typ",
   "multi-threading.typ",
   "software-engineering.typ",
 ) {

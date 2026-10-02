@@ -37,7 +37,7 @@ Consumer<Object> consumer = new Consumer<>() {
 };
 ```
 
-== Initialisierung eines neuen Interfaces
+== Functional Interfaces
 
 Falls ein Interface nur eine einzige abstrakte Methode hat, handelt es sich um ein Functional Interface und man kann einen Lambda-Ausdruck verwenden. Ein Lambda-Ausdruck definiert nur die abstrakte Methode.
 
@@ -104,7 +104,7 @@ Dieser Syntax kann neben Iterable nur noch auf Arrays angewandt werden. Dabei im
 
 In diesem Kapitel ist zwar das einzige vorgestellte Interface, dennoch gibt es noch viele mehr. Dazu gehören zum Beispiel `Clonable`, `Runnable`, `RandomAccess`, `AutoClosable`, `List`, `Map`, `Set` und noch viele mehr. Viele davon wurden bereits am Rande eingeführt und andere werden noch besprochen. Nur die beiden Interfaces `Iterable` und `AutoClosable` erlauben das verwenden von neuen Syntax Strukturen.
 
-== Darstellung in UML
+== Interfaces in UML
 
 In UML werden Interfaces mit dem Tag `>>interface<<` dargestellt. Da es keine Attribute gibt, werden nur die Methoden dargestellt. Wenn eine Klasse ein Interface implementiert, wird dies durch einen gestrichelten Pfeil gekenzeichnet. Alles andere wie Vererbung unter Interfaces und Methoden wird genauso dargestellt wie auch bei Klassen.
 
