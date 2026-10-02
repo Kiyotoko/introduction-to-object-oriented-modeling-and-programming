@@ -18,13 +18,7 @@
 
   let lex-string(pos) = {
     let start = pos + 1
-    while (
-      peek(
-        pos + 1,
-        message: "Unclosed delimeter, parsed " + text.slice(start, pos),
-      )
-        != "\""
-    ) {
+    while peek(pos + 1, message: "Unclosed delimeter '\"'") != "\"" {
       pos += 1
     }
     pos += 1
@@ -79,12 +73,13 @@
 #let parser(tokens) = {
   let structs = ()
   let relations = ()
-
   let pos = 0
+
   let peek(pos) = {
     assert(pos < tokens.len(), message: "Expected token, got EOI")
     return tokens.at(pos)
   }
+
   let consume(pos, token) = {
     let actual = peek(pos)
     assert(
@@ -93,6 +88,7 @@
     )
     return pos + 1
   }
+
   let parse-meta(pos) = {
     let meta = ().to-dict()
     while peek(pos) == "@" {
@@ -107,6 +103,7 @@
     }
     return (pos, meta)
   }
+
   let parse-member(pos) = {
     let member = ().to-dict()
     if peek(pos) in visibility-modifiers {
@@ -149,6 +146,7 @@
 
     return (pos, member)
   }
+
   let parse-struct(pos) = {
     let struct = ().to-dict()
     struct.insert("type", peek(pos))
@@ -176,6 +174,7 @@
 
     return (pos, struct)
   }
+
   let parse-relation(pos) = {
     let relation = ().to-dict()
     relation.insert("from", peek(pos))
@@ -214,10 +213,36 @@
   return (structs, relations)
 }
 
-#let build(ast) = context {
-  let (structs, relations) = ast
+#let draw(ast) = context {
   show grid.cell: it => box(inset: 8pt, it)
   show grid.cell.where(y: 0): it => align(center, it)
+
+  let (structs, relations) = ast
+
+  let draw-attribute(
+    attribute,
+  ) = [#attribute.modifier #{ attribute.name }: #attribute.type]
+
+  let draw-method(method) = {
+    let params = method.parameters.map(p => [#{ p.name }: #p.type]).join(", ")
+    if "type" in method {
+      [#method.modifier #{ method.name }\(#params): #method.type]
+    } else {
+      [#method.modifier #{ method.name }\(#params)]
+    }
+  }
+
+  let calc-anchor(fx, fy, tx, ty) = {
+    if fy < ty {
+      return (".north", ".south")
+    } else if fy > ty {
+      return (".south", ".north")
+    } else if fx < tx {
+      return (".east", ".west")
+    } else {
+      return (".west", ".east")
+    }
+  }
 
   cetz.canvas({
     import cetz.draw: content, get-ctx, line
@@ -236,20 +261,13 @@
           stroke: 1pt,
           columns: 1,
           struct.name,
-          stack(spacing: 4pt, ..struct.attributes.map(
-            e => [#e.modifier #{ e.name }: #e.type],
-          )),
-          stack(spacing: 4pt, ..struct.methods.map(e => {
-            let params = e
-              .parameters
-              .map(p => [#{ p.name }: #p.type])
-              .join(", ")
-            if "type" in e {
-              [#e.modifier #{ e.name }\(#params): #e.type]
-            } else {
-              [#e.modifier #{ e.name }\(#params)]
-            }
-          })),
+          stack(
+            spacing: 4pt,
+            ..struct.attributes.map(
+              draw-attribute,
+            ),
+          ),
+          stack(spacing: 4pt, ..struct.methods.map(draw-method)),
         )
 
         let size = util.measure(ctx, repr)
@@ -291,26 +309,10 @@
             relation.to,
           )
           let (fx, fy, tx, ty) = (from.at(0), from.at(1), to.at(0), to.at(1))
-          let (spec_from, spec_to) = (".", ".")
-          if fy < ty {
-            spec_from += "north"
-            spec_to += "south"
-          } else if fy > ty {
-            spec_from += "south"
-            spec_to += "north"
-          } else {
-            if fx < tx {
-              spec_from += "east"
-              spec_to += "west"
-            } else {
-              spec_to += "east"
-              spec_from += "west"
-            }
-          }
-
+          let (anc-from, anc-to) = calc-anchor(fx, fy, tx, ty)
           line(
-            relation.from + spec_from,
-            relation.to + spec_to,
+            relation.from + anc-from,
+            relation.to + anc-to,
             name: name,
             mark: (
               end: ">",
@@ -335,5 +337,5 @@
   let tokens = lexer(text)
   let ast = parser(tokens)
 
-  build(ast)
+  draw(ast)
 }
