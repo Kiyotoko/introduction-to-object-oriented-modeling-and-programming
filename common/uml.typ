@@ -213,22 +213,40 @@
   return (structs, relations)
 }
 
+#let get-meta-or-default(obj, property, default) = {
+  if property in obj.meta {
+    return obj.meta.at(property)
+  } else {
+    return default
+  }
+}
+
 #let draw(ast) = context {
   show grid.cell: it => box(inset: 8pt, it)
   show grid.cell.where(y: 0): it => align(center, it)
 
   let (structs, relations) = ast
 
-  let draw-attribute(
-    attribute,
-  ) = [#attribute.modifier #{ attribute.name }: #attribute.type]
+  let draw-attribute(attribute) = {
+    let name = get-meta-or-default(attribute, "name", attribute.name)
+    let modifier = get-meta-or-default(
+      attribute,
+      "modifier",
+      attribute.modifier,
+    )
+    let type = get-meta-or-default(attribute, "type", attribute.type)
+    [#modifier #{ name }: #type]
+  }
 
   let draw-method(method) = {
     let params = method.parameters.map(p => [#{ p.name }: #p.type]).join(", ")
+    let name = get-meta-or-default(method, "name", method.name)
+    let modifier = get-meta-or-default(method, "modifier", method.modifier)
     if "type" in method {
-      [#method.modifier #{ method.name }\(#params): #method.type]
+      let type = get-meta-or-default(method, "type", method.type)
+      [#modifier #{ name }\(#params): #type]
     } else {
-      [#method.modifier #{ method.name }\(#params)]
+      [#modifier #{ name }\(#params)]
     }
   }
 
@@ -260,7 +278,7 @@
         let repr = grid(
           stroke: 1pt,
           columns: 1,
-          struct.name,
+          get-meta-or-default(struct, "name", struct.name),
           stack(
             spacing: 4pt,
             ..struct.attributes.map(
@@ -277,6 +295,7 @@
     })
     for relation in relations {
       let name = relation.from + "-" + relation.to
+      let end = get-meta-or-default(relation, "end", ">")
       if relation.from == relation.to {
         get-ctx(ctx => {
           let (ctx, pos) = cetz.coordinate.resolve(
@@ -289,7 +308,7 @@
             vector.add(pos, (1, -1)),
             vector.add(pos, (0, -1)),
             name: name,
-            mark: (end: ">"),
+            mark: (end: end),
           )
 
           if "text" in relation.meta {
@@ -315,7 +334,7 @@
             relation.to + anc-to,
             name: name,
             mark: (
-              end: ">",
+              end: end,
             ),
           )
           if "text" in relation.meta {

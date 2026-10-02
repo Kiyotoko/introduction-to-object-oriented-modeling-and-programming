@@ -193,11 +193,11 @@ Attribute, Methoden und Klassen haben einen Zugriffsmodifikator. Der Modifikator
 #align(center)[
   ```uml
   class Student {
-    -name: String;
-    ~campusCard: long;
+    -name: String
+    ~campusCard: long
 
-    +lernen(): void;
-    Student(name: String, campusCard: long );
+    +lernen(): void
+    Student(name: String, campusCard: long)
   }
   ```
 ]
@@ -242,7 +242,7 @@ Zur Modellierung mit UML gehört nicht nur die Repräsentation der Struktur, son
     +Node()
   }
 
-  List to@text("0..1") Node
+  List to@text("0..1")@end(diamond) Node
   Node to@text("0..1") Node
   ```
 ]
