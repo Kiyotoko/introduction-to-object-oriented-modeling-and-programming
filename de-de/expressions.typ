@@ -2,13 +2,13 @@
 
 = Ausdrücke
 
-Um gespeicherte Informationen verarbeiten zu können braucht es eine eindeutige Interpretation der gespeicherten Bits. Gleichzeitig soll beim Programmieren von der Hardwaredarstellung der Informationen abstrahiert werden. Dafür werden *Datentypen* definiert.
+Um gespeicherte Informationen verarbeiten zu können braucht es eine eindeutige Interpretation der gespeicherten Bits. Gleichzeitig soll beim Programmieren von der Hardwaredarstellung der Informationen abstrahiert werden. Dafür werden Datentypen definiert.
 
 #definition("Datentypen")[
   Ein Datentyp (engl. _data type_) ist gekennzeichnet durch einen Wertebereich sowie Operationen auf diesem Wertebereich.
 ]
 
-In Java sind primitive Datentypen für Zahlen, Wahrheitswerte und Zeichen definiert. Es gibt dabei verschiedene Varianten, je nachdem wie viel Speicher für einen Wert dieses Datentyps reserviert wird. Zeichenketten werden durch die Klasse `String` dargestellt.
+In Java sind primitive Datentypen für Zahlen, Wahrheitswerte und Zeichen definiert. Es gibt dabei verschiedene Varianten, je nachdem wie viel Speicher für einen Wert dieses Datentyps reserviert wird. Zeichenketten werden durch `String` dargestellt.
 Zahlen in Java sind entweder Ganzzahlen (Integers) oder Gleitkommazahlen (engl. _floating point numbers_). Alle Zahlen in Java werden mit einem Vorzeichen abgespeichert (Plus/Minus). In der folgenden Tabelle sind Javas primitiven Datentypen für Zahlen angegeben:
 
 #table(
@@ -93,13 +93,13 @@ Binäre Operationen sind Operationen, welche *zwei* Ausdrücke nehmen und einen 
 Häufige Operationen auf Zahlen sind:
 
 ```java
-jshell> 1.0 + 2.0
+jshell> 1.0 + 2.0 // Addition
 $1 ==> 3.0
-jshell> 1.0 - 2.0
+jshell> 1.0 - 2.0 // Subtraktion
 $2 ==> -1.0
-jshell> 1.0 * 2.0
+jshell> 1.0 * 2.0 // Multiplikation
 $3 ==> 2.0
-jshell> 1.0 / 2.0
+jshell> 1.0 / 2.0 // Division
 $4 ==> 0.5
 jshell> 15 % 6 // Modulo
 $5 ==> 3
@@ -130,19 +130,41 @@ jshell> false || false
 $9 ==> false
 ```
 
+Zusätzlich können Werte auch miteinander verglichen werden. Jeder Wert kann auf Gleichheit (`==`) oder Ungleichheit (`!=`) geprüft werden. Zusätzlich ist es möglich zu überprüfen, ob eine Zahl größer oder kleiner als eine andere Zahl ist:
+
+```java
+jshell> "Hello" == "World" // Gleichheit
+$11 ==> false
+jshell> "Hello" != "World" // Ungleichheit
+$12 ==> true
+jshell> 4 < 5 // 4 echt kleiner als 5
+$13 ==> true
+jshell> 4 > 4 // 4 echt größer als 4
+$14 ==> false
+jshell> 4 >= 4 // 4 größer gleich 4
+$15 ==> true
+```
+
 Die Operationen Und sowie Oder haben in Java Lazy Evaluation. Dies bedeutet, dass der zweite Operand nur ausgewertet wird, wenn sein Wert für das Ergebnis benötigt wird.
 
 #runtime-error[
   ```java
   jshell> false && (1 / 0 == 0)
-  $10 ==> false
+  $17 ==> false
   jshell> true || (1 / 0 == 0)
-  $11 ==> true
+  $18 ==> true
   jshell> false || (1 / 0 == 0)
   |  Exception java.lang.ArithmeticException: / by zero
   |        at (#2:1)
   ```
 ]
+
+Wenn wir Zeichenketten mit anderen Werten zu noch längeren Zeichenketten zusammenfügen wollen, können wir dafür Plus verwenden:
+
+```java
+jshell> "Hello " + "World!"
+$16 ==> "Hello World!"
+```
 
 == Ternäre Operationen
 
@@ -154,7 +176,7 @@ condition ? expr1 : expr2
 
 ```java
 jshell> true ? "Wahr" : "Falsch"
-$12 ==> "Wahr"
+$19 ==> "Wahr"
 ```
 
 #task("Auswertung von Ausdrücken")[

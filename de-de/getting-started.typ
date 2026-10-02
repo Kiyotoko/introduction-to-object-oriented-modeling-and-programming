@@ -45,7 +45,7 @@ Hello, World!
 
 == Was haben Sie gerade gemacht?
 
-Sie haben gerade eine neue Klasse namens Main erstellt. Da die Klasse ```java public``` ist, muss der Dateiname mit dem Klassennamen übereinstimmen. Dieses Programm enthält eine `main` Methode. Wenn Sie `java Main` ausführen, sucht die JVM nach einer Methode mit der Signatur
+Sie haben gerade eine neue Klasse namens Main erstellt. Da die Klasse ```java public``` ist, muss der Dateiname mit dem Klassennamen übereinstimmen. Dieses Programm enthält eine `main` Methode. Wenn Sie `java Main` ausführen, sucht die JVM nach einer Methode mit der folgenden Struktur:
 
 ```java
 public static void main(String[] args)

@@ -1,12 +1,12 @@
 #import "../common/callouts.typ": *
 
-= Anweisung
+= Anweisung <statements>
 
 #definition("Anweisung", [
   Eine Anweisung (engl.: _statement_) ist ein Syntaxkonstrukt, das während der Programmausführung eine Aktion ausführt oder den Ablauf der Ausführung beeinflusst.
   Arten von Anweisungen:
 
-  - Auswertungsanweisung
+  - Auswertung eines Ausdruckes
   - Variablendeklaration
   - strukturierte Anweisung
 ])
@@ -66,6 +66,52 @@ Variablen, welche in einem Block deklariert sind, sind auch nur in ihrem Bereich
   ```
 ]
 
+== Zuweisungungen
+
+Mit `=` kann einer Variable ein neuer Wert zugewiesen werden:
+
+```java
+int a = 1; // Deklaration + Initialisierung
+int b; // Deklaration
+b = 2; // Zuweisung
+```
+
+Auf der linken Seite steht die Variable, die verändert werden soll. Auf der rechten Seite steht der neue Wert. Dabei kann die Variable selbst ebenfalls auf der rechten Seite stehen:
+
+```java
+int a = 1; // Initialisiert mit 1
+a = a + 1; // Variable wird um 1 erhöht
+```
+
+Anstatt ```java a = a + 1;``` zu schreiben, können Sie auch ```java a += 1;``` nutzen. Beide Ausdrücke beschreiben das Selbe und können durch das jeweils Andere ersetzt werden. Das Gleiche gilt auch für Subtraktion, Multiplikation und Division mit jeweils `-=`, `*=` und `/=`.
+
+Darüber hinaus kann das Addiren oder Subtrahieren um 1 mit den beiden Operationen `++` und `--` noch einfacher geschrieben werden. Daher kann das obere Beispiel ```java a = a + 1;``` auch einfach durch ```java a++;``` ausgetrückt werden!
+
+Auch wenn lokale Variablen kein Wert zugewiesen werden muss, müssen sie trotzdem vor ihrer Verwendung einen Wert erhalten.
+Hier wurde `b` kein Wert bei der Deklaration zugewiesen. Das Lesen einer nicht initialisierten lokalen Variable ist nicht erlaubt:
+
+#compile-error()[
+  ```java
+  { int i; System.out.println(i);}
+  |  Error:
+  |  variable i might not have been initialized
+  |  { int i; System.out.println(i);}
+  |                              ^
+  ```
+]
+
+#complementary("Zuweisungen sind Ausdrücke")[
+  Wie bereits im Text erwähnt, sind Zuweisungen in Java eigentlich Ausdrücke, und nicht Anweisungen. Das bedeutet, dass Zuweisungen auch immer einen Wert berechen und zurückgeben. Nur weil Sie Zuweisungen als Ausdrücke verwenden können, heißt dies nicht, dass Sie das auch tuen sollten. Ein Beispiel: Versuchen Sie das Ergebnis zu bestimmen. 
+
+  #unexpected-result[
+    ```java
+    jshell> int i = 1;
+    i ==> 1
+    jshell> (i *= (i += (i = 2))) // ?
+    ```
+  ]
+]
+
 == If/Else
 
 #definition("Kontrollstruktur")[
@@ -74,8 +120,6 @@ Variablen, welche in einem Block deklariert sind, sind auch nur in ihrem Bereich
 
 Bedingte Ausführung kann durch eine If/Else-Verzweigung erreicht werden.
 
-Wenn der boolesche Ausdruck zu `true` ausgewertet wird, dann wird die Anweisung 1 ausgeführt, ansonsten die Anweisung 2. Dabei ist der ```java else```-Teil optional.
-
 ```java
 if (condition) {
   // Anweisung 1
@@ -83,6 +127,9 @@ if (condition) {
   // Anweisung 2
 }
 ```
+
+Dabei ist `condition` ein boolescher Ausdruck.
+Wenn der boolesche Ausdruck zu `true` ausgewertet wird, dann wird die Anweisung 1 ausgeführt, ansonsten die Anweisung 2. Dabei ist der ```java else```-Teil optional.
 
 Es ist möglich, If/Else-Verzweigungen mehrfach aneinander zu reihen:
 
@@ -128,13 +175,34 @@ Negativ
 
 == While
 
-While und später For erlauben eine wiederholte Ausführung. Eine Anweisung wird solange ausgeführt, wie die Bedingung wahr ist. Nach jeder Ausführung des Statements wird die Bedingung erneut überprüft. Hier wird zuerst die Bedingung überprüft und dann das Statement ausgeführt.
+While und später For erlauben eine wiederholte Ausführung. Eine Anweisung wird solange ausgeführt, wie der boolesche Ausdruck (siehe `condition`) wahr ist. Nach jeder Ausführung des Statements wird die Bedingung erneut überprüft. Hier wird zuerst die Bedingung überprüft und dann das Statement ausgeführt.
 
 ```java
 while (condition) {
   // Anweisung
 }
 ```
+
+Wenn Sie Beispeilsweise die ersten fünf Quadratzahlen ausgeben möchten, können Sie dafür den folgenden Code verwenden:
+
+```java
+jshell> int i = 1;
+   ...> while (i <= 5) {
+   ...>   System.out.printf("%d, ", i * i);
+   ...>   i += 1;
+   ...> }
+1, 4, 9, 16, 25,
+```
+
+#complementary("Print mit Formatierung")[
+  Mit ```java System.out.println(...)``` kann man etwas auf der Konsole ausgeben und danach eine neue Zeile beginnen. Daneben gibt aber auch ```java System.out.print``` und ```java System.out.printf```. Mit `print` kann man etwas ausgeben, ohne eine neue Zeile auszugeben. Zusätzlich erlaubt `printf` es, einen Formatierungs-String mit anzugeben. Dabei ist ein Formatierungs-String eine Zeichenkette mit verschieden Regeln, wie die danach folgenden Objekte dargestellt werden sollen. Dabei ist `%s` für Strings, `%f` für Fließkommazahlen, `%d` für Ganzzahlen und `%n` für eine neue Zeile. Dazwischen können beliebig viele reguläre Zeichen stehen, welche dann normal dargestellt werden. Es ist ebenfalls möglich, beliebig viele Objekte auf einmal darzustellen:
+
+  ```java
+  jshell> { int a = 2; int b = 3;
+     ...>   System.out.printf("%d + %d = %d%n", a, b, a+b); }
+  2 + 3 = 5
+  ```
+]
 
 Was passiert, wenn die Bedingung sich nie ändert und immer Wahr bleibt? In diesem Fall erzeugt man eine Endlosschleife und die Anweisung wird immer wieder ausgeführt. Falls dies nicht beabsichtig war, können Sie ein Programm mit `CTRL + C` abbrechen.
 
@@ -167,26 +235,7 @@ jshell> for (int i = 1; i <= 5; i += 1) {
 1, 4, 9, 16, 25,
 ```
 
-#complementary("Print mit Formatierung")[
-  Mit ```java System.out.println(...)``` kann man etwas auf der Konsole ausgeben und danach eine neue Zeile beginnen. Daneben gibt aber auch ```java System.out.print``` und ```java System.out.printf```. Mit `print` kann man etwas ausgeben, ohne eine neue Zeile auszugeben. Zusätzlich erlaubt `printf` es, einen Formatierungs-String mit anzugeben. Dabei ist ein Formatierungs-String eine Zeichenkette mit verschieden Regeln, wie die danach folgenden Objekte dargestellt werden sollen. Dabei ist `%s` für Strings, `%f` für Fließkommazahlen, `%d` für Ganzzahlen und `%n` für eine neue Zeile. Dazwischen können beliebig viele reguläre Zeichen stehen, welche dann normal dargestellt werden. Es ist ebenfalls möglich, beliebig viele Objekte auf einmal darzustellen:
-
-  ```java
-  jshell> { int a = 2; int b = 3;
-     ...>   System.out.printf("%d + %d = %d%n", a, b, a+b); }
-  2 + 3 = 5
-  ```
-]
-
-Alternativ kann man erweiterte For-Schleifen verwenden, um über eine Folge von Elementen zu iterieren.
-
-```java
-jshell> for (int i : new int[]{ 1, 8, 7 }) {
-   ...>   System.out.printf("%d, ", i);
-   ...> }
-1, 8, 7,
-```
-
-Wie genau die hier dargestellten Arrays oder später auch die Java Collections funktionieren, erfahren Sie in einem späteren Kapitel.
+Diese For-Schleife macht das Gleiche wie die While-Schleife im Beispiel weiter oben.
 
 #task("State und Statements")[
   1. Schreibe ein Programm, welches die #link("https://en.wikipedia.org/wiki/Factorial")[Fakultät $n!$] für eine Zahl $n$ ausgibt. Ausgabe für $n = 5$: $120$
@@ -210,5 +259,7 @@ Wie genau die hier dargestellten Arrays oder später auch die Java Collections f
     1 5 10 10 5 1
     ```
 
-    Hinweis: Ein Zahl entspricht immer der Summe der beiden oberen Zahlen. Siehe auch #link("https://en.wikipedia.org/wiki/Pascal%27s_triangle")[Pascalsches Dreieck].
+    Hinweis: Eine Zahl entspricht immer der Summe der beiden oberen Zahlen. Siehe auch #link("https://en.wikipedia.org/wiki/Pascal%27s_triangle")[Pascalsches Dreieck].
+
+  #solution("https://codeberg.org/karlz/introduction-to-oop-and-uml/src/branch/master/solution/state-and-statements.md")[Lösung]
 ]
