@@ -191,16 +191,15 @@ Attribute, Methoden und Klassen haben einen Zugriffsmodifikator. Der Modifikator
 == Klassen in UML
 
 #align(center)[
-  ```source-diagram-java
-  class Student {
-    private String name;
-    protected long campusCard;
+```uml
+class Student {
+  -name: String;
+  ~campusCard: long;
 
-    Student(name: String, campusCard: long);
-
-    public void lernen();
-  }
-  ```
+  +lernen(): void;
+  Student(name: String, campusCard: long );
+}
+```
 ]
 
 UML wird genutzt, um die Struktur einer Klasse graphisch darzustellen. Für Klassen müssen daher sowohl alle Attribute als auch Konstruktoren und Methoden enthalten sein. Hier ist die Klasse `Student` dargestellt.
@@ -224,18 +223,18 @@ Zum Schluss werden noch die Zugriffsmodifikatoren in UML mithilfe von Symbolen d
 Zur Modellierung mit UML gehört nicht nur die Repräsentation der Struktur, sondern auch die Relationen untereinander.
 
 #align(center)[
-  ```source-diagram-java
+  ```uml
   class List {
-    private Node head;
-    private int size;
+    -head: Node;
+    -size: int;
 
-    public List();
+    +List();
   }
 
   class Node {
-    private int value;
+    -value: int;
 
-    public Node();
+    +Node();
   }
   ```
 ]
