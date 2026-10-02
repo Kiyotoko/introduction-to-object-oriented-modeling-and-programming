@@ -101,7 +101,7 @@ Hier wurde `b` kein Wert bei der Deklaration zugewiesen. Das Lesen einer nicht i
 ]
 
 #complementary("Zuweisungen sind Ausdrücke")[
-  Wie bereits im Text erwähnt, sind Zuweisungen in Java eigentlich Ausdrücke, und nicht Anweisungen. Das bedeutet, dass Zuweisungen auch immer einen Wert berechen und zurückgeben. Nur weil Sie Zuweisungen als Ausdrücke verwenden können, heißt dies nicht, dass Sie das auch tuen sollten. Ein Beispiel: Versuchen Sie das Ergebnis zu bestimmen. 
+  Wie bereits im Text erwähnt, sind Zuweisungen in Java eigentlich Ausdrücke, und nicht Anweisungen. Das bedeutet, dass Zuweisungen auch immer einen Wert berechen und zurückgeben. Nur weil Sie Zuweisungen als Ausdrücke verwenden können, heißt dies nicht, dass Sie das auch tuen sollten. Ein Beispiel: Versuchen Sie das Ergebnis zu bestimmen.
 
   #unexpected-result[
     ```java
@@ -261,5 +261,7 @@ Diese For-Schleife macht das Gleiche wie die While-Schleife im Beispiel weiter o
 
     Hinweis: Eine Zahl entspricht immer der Summe der beiden oberen Zahlen. Siehe auch #link("https://en.wikipedia.org/wiki/Pascal%27s_triangle")[Pascalsches Dreieck].
 
-  #solution("https://codeberg.org/karlz/introduction-to-oop-and-uml/src/branch/master/solution/state-and-statements.md")[Lösung]
+  #solution(
+    "https://codeberg.org/karlz/introduction-to-oop-and-uml/src/branch/master/solution/state-and-statements.md",
+  )[Lösung]
 ]

@@ -1,4 +1,3 @@
-#import "@preview/merman:0.3.0": *
 #import "callouts.typ": *
 #import "uml.typ"
 
@@ -13,16 +12,6 @@
     width: 100%,
     inset: 10pt,
     radius: 4pt,
-  )
-  show raw.where(lang: "mermaid"): it => mermaid(it.text,
-    typography: (
-      size: 12pt,
-      
-    ),
-    environment: (
-      text_measurement: "deterministic",
-      math_renderer: "none",
-    ),
   )
   show raw.where(lang: "uml"): it => uml.render(it.text)
 

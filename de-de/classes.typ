@@ -191,15 +191,15 @@ Attribute, Methoden und Klassen haben einen Zugriffsmodifikator. Der Modifikator
 == Klassen in UML
 
 #align(center)[
-```uml
-class Student {
-  -name: String;
-  ~campusCard: long;
+  ```uml
+  class Student {
+    -name: String;
+    ~campusCard: long;
 
-  +lernen(): void;
-  Student(name: String, campusCard: long );
-}
-```
+    +lernen(): void;
+    Student(name: String, campusCard: long );
+  }
+  ```
 ]
 
 UML wird genutzt, um die Struktur einer Klasse graphisch darzustellen. Für Klassen müssen daher sowohl alle Attribute als auch Konstruktoren und Methoden enthalten sein. Hier ist die Klasse `Student` dargestellt.
@@ -213,9 +213,13 @@ Zum Schluss werden noch die Zugriffsmodifikatoren in UML mithilfe von Symbolen d
 #align(center, table(
   columns: (auto, auto, auto, auto, auto),
   table.header(
-    strong[Modifikator], ```java private```, [Kein Modifikator\ (package-private)], ```java protected```, ```java public```
+    strong[Modifikator],
+    ```java private```,
+    [Kein Modifikator\ (package-private)],
+    ```java protected```,
+    ```java public```,
   ),
-  strong[Symbol in UML], [`-`], [Kein Symbol (` `)], [`~`], [`+`]
+  strong[Symbol in UML], [`-`], [Kein Symbol (` `)], [`~`], [`+`],
 ))
 
 == Modellierung von Relationen
@@ -225,21 +229,25 @@ Zur Modellierung mit UML gehört nicht nur die Repräsentation der Struktur, son
 #align(center)[
   ```uml
   class List {
-    -head: Node;
-    -size: int;
+    -head: Node
+    -size: int
 
-    +List();
+    +List()
   }
 
   class Node {
-    -value: int;
+    -next: Node
+    -value: int
 
-    +Node();
+    +Node()
   }
+
+  List to@text("0..1") Node
+  Node to@text("0..1") Node
   ```
 ]
 
-Dabei wird dargestellt, welche Attribute sich auf welche Klassen beziehen. 
+Dabei wird dargestellt, welche Attribute sich auf welche Klassen beziehen.
 
 #task("Klassen Chaos")[
   1. Erweitere die Klasse `Student` aus dem Anfang des Kapitels um einen Konstruktor.
