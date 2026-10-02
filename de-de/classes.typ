@@ -173,7 +173,7 @@ Doch wann benötigt man überhaupt die aktuelle Instanz, wenn man auch einfach d
 
 == Zugriffsmodifikatoren
 
-Attribute, Methoden und Klassen haben einen Zugriffsmodifikator. Der Modifikator steht ganz am Anfang der Deklaration und legt fest, von wo aus im Projekt man auf diese Deklaration zugreifen kann.
+Attribute und Methoden können in Java mit einem Zugriffsmodifikator versehen werden. Klassen können ebenfalls einen Zugriffsmodifikator haben, wobei für Klassen auf oberster Ebene nur ```java public``` oder kein Zugriffsmodifikator möglich ist. Der Zugriffsmodifikator legt fest, von welchen Stellen aus auf die entsprechende Deklaration zugegriffen werden kann.
 
 #{
   let x = align(center, [x])
@@ -196,19 +196,20 @@ Attribute, Methoden und Klassen haben einen Zugriffsmodifikator. Der Modifikator
     -name: String
     ~campusCard: long
 
+    +Student(name: String, campusCard: long)
     +lernen(): void
-    Student(name: String, campusCard: long)
   }
   ```
 ]
 
-UML wird genutzt, um die Struktur einer Klasse graphisch darzustellen. Für Klassen müssen daher sowohl alle Attribute als auch Konstruktoren und Methoden enthalten sein. Hier ist die Klasse `Student` dargestellt.
+UML wird genutzt, um die Struktur einer Klasse grafisch darzustellen. In einem Klassendiagramm können Attribute, Konstruktoren und Methoden einer Klasse dargestellt werden. Hier ist die Klasse `Student` dargestellt.
 
 Bei Attributen wird der Name und Datentyp im Diagram abgebildet. Dabei kommt im Gegensatz zu Java der Datentyp hinter den Namen und wird mit einem Doppelpunkt (`:`) getrennt.
 
-Ähnlich dazu wird auch bei Methoden und Attributen der Name dargestellt, gefolgt von der Liste der Parameter und dem Rückgabetyp. Auch hier kommen die Datentypen nach den Namen und nicht davor.
+Bei Methoden wird der Name dargestellt, gefolgt von der Liste der Parameter und dem Rückgabetyp. Auch hier kommen die Datentypen nach den Namen und nicht davor.
+Konstruktoren werden wie Methoden mit Namen und Parameterliste angegeben, besitzen aber keinen Rückgabetyp.
 
-Zum Schluss werden noch die Zugriffsmodifikatoren in UML mithilfe von Symbolen dargestellt
+Die folgende Tabelle zeigt, wie die einzelnen Zugriffsmodifikatoren in UML dargestellt werden können.
 
 #align(center, table(
   columns: (auto, auto, auto, auto, auto),
@@ -222,32 +223,35 @@ Zum Schluss werden noch die Zugriffsmodifikatoren in UML mithilfe von Symbolen d
   strong[Symbol in UML], [`-`], [Kein Symbol (` `)], [`~`], [`+`],
 ))
 
-== Modellierung von Relationen
+== Modellierung von Assoziationen
 
-Zur Modellierung mit UML gehört nicht nur die Repräsentation der Struktur, sondern auch die Relationen untereinander.
+Zur Modellierung mit UML gehört nicht nur die Darstellung der Struktur einzelner Klassen, sondern auch die Darstellung von Beziehungen zwischen Klassen. Eine spezielle Form der Beziehung zwischen Klassen ist die Assoziation. Sie beschreibt, dass Objekte der beteiligten Klassen miteinander verbunden sein können.
 
 #align(center)[
   ```uml
-  class List {
-    -head: Node
-    -size: int
+  class Teacher {
+    -teaches: Array @type("Student[]")
+    -subject: String
 
-    +List()
+    +Teacher()
   }
 
-  class Node {
-    -next: Node
-    -value: int
+  class Student {
+    -teacher: Teacher
+    -name: String
 
-    +Node()
+    +Student()
   }
 
-  List to@text("0..1")@end(diamond) Node
-  Node to@text("0..1") Node
+  Teacher to @text_start("0..*") @text_end("1..1") Student
   ```
 ]
 
-Dabei wird dargestellt, welche Attribute sich auf welche Klassen beziehen.
+Die Angaben an den Enden der Assoziation geben die Multiplizität an. Sie beschreibt, mit wie vielen Objekten der jeweils anderen Klasse ein Objekt verbunden sein kann.
+
+`1..1` bedeutet, dass einem Objekt genau ein Objekt der jeweils anderen Klasse zugeordnet ist. `0..*` bedeutet, dass einem Objekt kein, ein oder beliebig viele Objekte der jeweils anderen Klasse zugeordnet sein können.
+
+#pagebreak()
 
 #task("Klassen Chaos")[
   1. Erweitere die Klasse `Student` aus dem Anfang des Kapitels um einen Konstruktor.

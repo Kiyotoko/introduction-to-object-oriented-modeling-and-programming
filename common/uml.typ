@@ -295,7 +295,7 @@
     })
     for relation in relations {
       let name = relation.from + "-" + relation.to
-      let end = get-meta-or-default(relation, "end", ">")
+      let end = get-meta-or-default(relation, "end", none)
       if relation.from == relation.to {
         get-ctx(ctx => {
           let (ctx, pos) = cetz.coordinate.resolve(
@@ -313,10 +313,26 @@
 
           if "text" in relation.meta {
             content(
+              vector.add(pos, (1, -0.65)),
+              anchor: "west",
+              padding: 0.1,
+              relation.meta.text,
+            )
+          }
+          if "text_start" in relation.meta {
+            content(
               vector.add(pos, (0, -0.25)),
               anchor: "south-west",
               padding: 0.1,
-              relation.meta.text,
+              relation.meta.text_start,
+            )
+          }
+          if "text_end" in relation.meta {
+            content(
+              vector.add(pos, (0, -1)),
+              anchor: "north-west",
+              padding: 0.1,
+              relation.meta.text_end,
             )
           }
         })
@@ -344,6 +360,24 @@
               anchor: "south",
               padding: 0.1,
               relation.meta.text,
+            )
+          }
+          if "text_start" in relation.meta {
+            content(
+              name + ".start",
+              angle: name + ".end",
+              anchor: "south-west",
+              padding: 0.1,
+              relation.meta.text_start,
+            )
+          }
+          if "text_end" in relation.meta {
+            content(
+              name + ".end",
+              angle: name + ".end",
+              anchor: "south-east",
+              padding: 0.1,
+              relation.meta.text_end,
             )
           }
         })
