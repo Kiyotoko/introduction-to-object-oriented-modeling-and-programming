@@ -230,7 +230,7 @@ Zur Modellierung mit UML gehört nicht nur die Darstellung der Struktur einzelne
 #align(center)[
   ```uml
   class Teacher {
-    -teaches: Array @type("Student[]")
+    -teaches: Array @Type("Student[]")
     -subject: String
 
     +Teacher()
@@ -243,7 +243,7 @@ Zur Modellierung mit UML gehört nicht nur die Darstellung der Struktur einzelne
     +Student()
   }
 
-  Teacher to @text_start("0..*") @text_end("1..1") Student
+  Teacher to @TextStart("0..*") @TextEnd("1..1") Student
   ```
 ]
 

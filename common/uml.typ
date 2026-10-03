@@ -228,22 +228,22 @@
   let (structs, relations) = ast
 
   let draw-attribute(attribute) = {
-    let name = get-meta-or-default(attribute, "name", attribute.name)
+    let name = get-meta-or-default(attribute, "Name", attribute.name)
     let modifier = get-meta-or-default(
       attribute,
-      "modifier",
+      "Modifier",
       attribute.modifier,
     )
-    let type = get-meta-or-default(attribute, "type", attribute.type)
+    let type = get-meta-or-default(attribute, "Type", attribute.type)
     [#modifier #{ name }: #type]
   }
 
   let draw-method(method) = {
     let params = method.parameters.map(p => [#{ p.name }: #p.type]).join(", ")
-    let name = get-meta-or-default(method, "name", method.name)
-    let modifier = get-meta-or-default(method, "modifier", method.modifier)
+    let name = get-meta-or-default(method, "Name", method.name)
+    let modifier = get-meta-or-default(method, "Modifier", method.modifier)
     if "type" in method {
-      let type = get-meta-or-default(method, "type", method.type)
+      let type = get-meta-or-default(method, "Type", method.type)
       [#modifier #{ name }\(#params): #type]
     } else {
       [#modifier #{ name }\(#params)]
@@ -278,7 +278,7 @@
         let repr = grid(
           stroke: 1pt,
           columns: 1,
-          get-meta-or-default(struct, "name", struct.name),
+          get-meta-or-default(struct, "Name", struct.name),
           stack(
             spacing: 4pt,
             ..struct.attributes.map(
@@ -295,7 +295,7 @@
     })
     for relation in relations {
       let name = relation.from + "-" + relation.to
-      let end = get-meta-or-default(relation, "end", none)
+      let end = get-meta-or-default(relation, "End", none)
       if relation.from == relation.to {
         get-ctx(ctx => {
           let (ctx, pos) = cetz.coordinate.resolve(
@@ -311,28 +311,28 @@
             mark: (end: end),
           )
 
-          if "text" in relation.meta {
+          if "Text" in relation.meta {
             content(
               vector.add(pos, (1, -0.65)),
               anchor: "west",
               padding: 0.1,
-              relation.meta.text,
+              relation.meta.Text,
             )
           }
-          if "text_start" in relation.meta {
+          if "TextStart" in relation.meta {
             content(
               vector.add(pos, (0, -0.25)),
               anchor: "south-west",
               padding: 0.1,
-              relation.meta.text_start,
+              relation.meta.TextStart,
             )
           }
-          if "text_end" in relation.meta {
+          if "TextEnd" in relation.meta {
             content(
               vector.add(pos, (0, -1)),
               anchor: "north-west",
               padding: 0.1,
-              relation.meta.text_end,
+              relation.meta.TextEnd,
             )
           }
         })
@@ -353,31 +353,31 @@
               end: end,
             ),
           )
-          if "text" in relation.meta {
+          if "Text" in relation.meta {
             content(
               (name + ".start", 50%, name + ".end"),
               angle: name + ".end",
               anchor: "south",
               padding: 0.1,
-              relation.meta.text,
+              relation.meta.Text,
             )
           }
-          if "text_start" in relation.meta {
+          if "TextStart" in relation.meta {
             content(
               name + ".start",
               angle: name + ".end",
               anchor: "south-west",
               padding: 0.1,
-              relation.meta.text_start,
+              relation.meta.TextStart,
             )
           }
-          if "text_end" in relation.meta {
+          if "TextEnd" in relation.meta {
             content(
               name + ".end",
               angle: name + ".end",
               anchor: "south-east",
               padding: 0.1,
-              relation.meta.text_end,
+              relation.meta.TextEnd,
             )
           }
         })

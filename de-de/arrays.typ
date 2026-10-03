@@ -71,7 +71,7 @@ System.arraycopy(source, 0, target, 1, 3);
 ]
 
 #task("Aufmerksame Almaweb Arrays")[
-  Erstellen Sie ein Array und füllen Sie es mit Ihren (Wunsch) Modulnoten. Berechnen Sie die Durchschnittsnote anhand der Werte. Geben Sie die beste (kleinste) und schlechteste (größte) Note aus. Sortieren Sie die Noten von der schlechtesten zur besten und geben Sie das gesamte Array aus. Zählen Sie danach, wie häufig jede Note vorkommt und geben Sie die Statistik aus. Gewünschtes Verhalten:
+  Erstellen Sie ein Array und füllen Sie es mit Ihren (Wunsch) Modulnoten. Berechnen Sie die Durchschnittsnote anhand der Werte. Geben Sie die beste (kleinste) und schlechteste (größte) Note aus. Sortieren Sie die Noten von der Schlechtesten zur Besten und geben Sie das gesamte Array aus. Zählen Sie danach, wie häufig jede Note vorkommt und geben Sie die Statistik aus. Gewünschtes Verhalten:
 
   ```java
   double[] grades = {
