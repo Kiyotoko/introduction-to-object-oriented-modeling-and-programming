@@ -1,8 +1,11 @@
 #import "@preview/cetz:0.5.2"
 
 #let identifiers = regex("[a-zA-Z0-9_]")
-#let operators = regex("[+\-~{}():,;@]")
+#let modifiers = regex("[+\-~]")
+#let operators = regex("[{}():,;@]")
 #let spaces = regex("[ \\t\\n]")
+
+#let keywords = (to: "arrow", class: "struct", enum: "struct", interface: "struct", annotation: "struct")
 
 #let lexer(text) = {
   let pos = 0
@@ -23,7 +26,7 @@
     }
     pos += 1
 
-    return (pos + 1, text.slice(start, pos))
+    return (pos + 1, (lexeme: text.slice(start, pos), type: "str"))
   }
 
   let lex-identifier(pos) = {
@@ -31,8 +34,9 @@
     while matches(pos + 1, identifiers) {
       pos += 1
     }
-
-    return (pos + 1, text.slice(start, pos + 1))
+    let lexeme = text.slice(start, pos + 1)
+    let type = if lexeme in keywords { keywords.at(lexeme) } else { "identifier"}
+    return (pos + 1, (lexeme: lexeme, type: type))
   }
 
   let tokens = ()
@@ -45,8 +49,11 @@
       let (l, r) = lex-identifier(pos)
       pos = l
       tokens.push(r)
+    } else if matches(pos, modifiers) {
+      tokens.push((lexeme: peek(pos), type: "modifier"))
+      pos += 1
     } else if matches(pos, operators) {
-      tokens.push(peek(pos))
+      tokens.push((lexeme: peek(pos), type: "op"))
       pos += 1
     } else if matches(pos, spaces) {
       pos += 1
@@ -57,18 +64,26 @@
   return tokens
 }
 
-#let struct-tokens = (
-  "class",
-  "interface",
-  "annotation",
-  "enum",
-)
-
 #let visibility-modifiers = (
   "+",
   "-",
   "~",
 )
+
+#let op(sym) = (lexeme: sym, type: "op")
+
+#let brace-left = op("{")
+#let brace-right = op("}")
+#let bracket-left = op("(")
+#let bracket-right = op(")")
+#let colon = op(":")
+#let comma = op(",")
+#let semicolon = op(";")
+#let at = op("@")
+
+#let token-equals(left, right) = {
+  return left.type == right.type and left.lexeme == right.lexeme
+}
 
 #let parser(tokens) = {
   let structs = ()
@@ -80,25 +95,33 @@
     return tokens.at(pos)
   }
 
-  let consume(pos, token) = {
+  let advance(pos, expected) = {
+    let actual = peek(pos)
+    assert(actual.type == expected, message: "Expected token type '" + expected + "', got '" + actual.type + "'")
+    return actual.lexeme
+  }
+
+  let consume(pos, expected) = {
     let actual = peek(pos)
     assert(
-      actual == token,
-      message: "Expected token '" + token + "', got '" + actual + "'",
+      token-equals(actual, expected),
+      message: "Expected token '" + repr(expected) + "', got '" + repr(actual) + "'",
     )
     return pos + 1
   }
 
+  let matches(pos, check) = token-equals(peek(pos), check)
+
   let parse-meta(pos) = {
     let meta = ().to-dict()
-    while peek(pos) == "@" {
+    while matches(pos, at) {
       pos += 1
-      let name = peek(pos)
+      let name = advance(pos, "identifier")
       pos += 1
-      pos = consume(pos, "(")
-      let value = peek(pos)
+      pos = consume(pos, bracket-left)
+      let value = advance(pos, "str")
       pos += 1
-      pos = consume(pos, ")")
+      pos = consume(pos, bracket-right)
       meta.insert(name, value)
     }
     return (pos, meta)
@@ -106,42 +129,42 @@
 
   let parse-member(pos) = {
     let member = ().to-dict()
-    if peek(pos) in visibility-modifiers {
-      member.insert("modifier", peek(pos))
+    if peek(pos).type == "modifier" {
+      member.insert("modifier", advance(pos, "modifier"))
       pos += 1
     } else {
       member.insert("modifier", " ")
     }
-    member.insert("name", peek(pos))
+    member.insert("name", advance(pos, "identifier"))
     pos += 1
-    if peek(pos) == "(" {
+    if matches(pos, bracket-left) {
       pos += 1
       let parameters = ()
-      while peek(pos) != ")" {
+      while not matches(pos, bracket-right) {
         let parameter = ().to-dict()
-        parameter.insert("name", peek(pos))
+        parameter.insert("name", advance(pos, "identifier"))
         pos += 1
-        pos = consume(pos, ":")
-        parameter.insert("type", peek(pos))
+        pos = consume(pos, colon)
+        parameter.insert("type", advance(pos, "identifier"))
         pos += 1
-        if peek(pos) == "," {
+        if matches(pos, comma) {
           pos += 1
         }
         parameters.push(parameter)
       }
       member.insert("parameters", parameters)
-      pos = consume(pos, ")")
+      pos = consume(pos, bracket-right)
     }
-    if peek(pos) == ":" {
-      pos = consume(pos, ":")
-      member.insert("type", peek(pos))
+    if matches(pos, colon) {
+      pos = consume(pos, colon)
+      member.insert("type", advance(pos, "identifier"))
       pos += 1
     }
     let (l, r) = parse-meta(pos)
     pos = l
     member.insert("meta", r)
-    if peek(pos) == ";" {
-      pos = consume(pos, ";")
+    if matches(pos, semicolon) {
+      pos = consume(pos, semicolon)
     }
 
     return (pos, member)
@@ -149,17 +172,17 @@
 
   let parse-struct(pos) = {
     let struct = ().to-dict()
-    struct.insert("type", peek(pos))
+    struct.insert("type", advance(pos, "struct"))
     pos += 1
-    struct.insert("name", peek(pos))
+    struct.insert("name", advance(pos, "identifier"))
     pos += 1
     let (l, r) = parse-meta(pos)
     pos = l
     struct.insert("meta", r)
-    pos = consume(pos, "{")
+    pos = consume(pos, brace-left)
     let attributes = ()
     let methods = ()
-    while (peek(pos) != "}") {
+    while not matches(pos, brace-right) {
       (l, r) = parse-member(pos)
       pos = l
       if "parameters" in r {
@@ -170,36 +193,27 @@
     }
     struct.insert("attributes", attributes)
     struct.insert("methods", methods)
-    pos = consume(pos, "}")
+    pos = consume(pos, brace-right)
 
     return (pos, struct)
   }
 
   let parse-relation(pos) = {
     let relation = ().to-dict()
-    relation.insert("from", peek(pos))
+    relation.insert("from", advance(pos, "identifier"))
     pos += 1
-    pos = consume(pos, "to")
-    let meta = ().to-dict()
-    while peek(pos) == "@" {
-      pos += 1
-      let name = peek(pos)
-      pos += 1
-      pos = consume(pos, "(")
-      let value = peek(pos)
-      pos += 1
-      pos = consume(pos, ")")
-      meta.insert(name, value)
-    }
-    relation.insert("meta", meta)
-    relation.insert("to", peek(pos))
+    pos = consume(pos, (lexeme: "to", type: "arrow"))
+    let (l, r) = parse-meta(pos)
+    pos = l
+    relation.insert("meta", r)
+    relation.insert("to", advance(pos, "identifier"))
     pos += 1
 
     return (pos, relation)
   }
 
   while pos < tokens.len() {
-    if peek(pos) in struct-tokens {
+    if peek(pos).type == "struct" {
       let (l, r) = parse-struct(pos)
       pos = l
       structs.push(r)
